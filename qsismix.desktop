@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=QSixisix Mixer
+Comment=Mixer App for Focusrite Scarlett 6i6
+Exec=qsismix
+Icon=qsismix.png
+Terminal=false
+Type=Application
+Categories=Utility;

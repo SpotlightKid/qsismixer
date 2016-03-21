@@ -1,0 +1,3648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>939</width>
+    <height>389</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QsisMixer</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>931</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="masterTab">
+     <attribute name="title">
+      <string>Master</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>901</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
+       <item row="1" column="6" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_3">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_link_34">
+         <property name="text">
+          <string>Link</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_3">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_2"/>
+       </item>
+       <item row="2" column="7" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_4">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_1">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="9" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_5">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="7" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_4"/>
+       </item>
+       <item row="1" column="7" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_4">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5" rowspan="6">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_3"/>
+       </item>
+       <item row="1" column="4" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_2">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_2">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_1">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_1"/>
+       </item>
+       <item row="3" column="3" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_link_12">
+         <property name="text">
+          <string>Link</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="10" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_output_6">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="9" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_5">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="10" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_mute_6">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="9" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_out_link_56">
+         <property name="text">
+          <string>Link</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="9" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_5"/>
+       </item>
+       <item row="4" column="10" alignment="Qt::AlignHCenter">
+        <widget class="QComboBox" name="combo_out_src_6"/>
+       </item>
+       <item row="0" column="9" colspan="2">
+        <widget class="QLabel" name="label_148">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Output 5,6 (SPDIF)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6" colspan="2">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Output 3,4 (Headphone)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Master Volume</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3" colspan="2">
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Output 1,2 (Monitor)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" rowspan="6">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="8" rowspan="6">
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_master_R">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" alignment="Qt::AlignHCenter">
+        <widget class="QSlider" name="slider_master_L">
+         <property name="maximum">
+          <number>128</number>
+         </property>
+         <property name="tracking">
+          <bool>false</bool>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_master_mute_1">
+         <property name="text">
+          <string>Mute</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2" alignment="Qt::AlignHCenter">
+        <widget class="QCheckBox" name="check_master_link_12">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Link</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Input</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>901</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="4" column="5">
+        <widget class="Line" name="line_9">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="Line" name="line_11">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Analog 3 Pad</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_9">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_pad_on_3">
+             <property name="text">
+              <string>-10dB</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_pad_off_3">
+             <property name="text">
+              <string>0dB</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Analog 1 Impedance</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_imp_hiz_1">
+             <property name="text">
+              <string>Hi-Z</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_imp_line_1">
+             <property name="text">
+              <string>Line</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>Analog 4 Pad</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_7">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_pad_on_4">
+             <property name="text">
+              <string>-10dB</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_pad_off_4">
+             <property name="text">
+              <string>0dB</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Analog 2 Impedance</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_5">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_imp_line_2">
+             <property name="text">
+              <string>Line</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_imp_hiz_2">
+             <property name="text">
+              <string>Hi-Z</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Input Source 1</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_6">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_1"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Input Source 2</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_8">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_2"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="2" column="6">
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="title">
+          <string>Input Source 4</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_12">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_4"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QGroupBox" name="groupBox_10">
+         <property name="title">
+          <string>Input Source 6</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_13">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_6"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="title">
+          <string>Input Source 5</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_14">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_5"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_12">
+         <property name="title">
+          <string>Analog 1 Pad</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_15">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>60</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_pad_on_1">
+             <property name="text">
+              <string>-10dB</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_pad_off_1">
+             <property name="text">
+              <string>0dB</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="title">
+          <string>Analog 2 Pad</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_16">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="0" column="0">
+            <widget class="QRadioButton" name="rad_pad_on_2">
+             <property name="text">
+              <string>-10dB</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QRadioButton" name="rad_pad_off_2">
+             <property name="text">
+              <string>0dB</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="Line" name="line_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="Line" name="line_10">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3" rowspan="5">
+        <widget class="Line" name="line_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string>Input Source 3</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_11">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>181</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <widget class="QComboBox" name="combo_in_src_3"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="3">
+        <widget class="Line" name="line_8">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="Line" name="line_13">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="Line" name="line_14">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="Line" name="line_15">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="Line" name="line_31">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="Line" name="line_32">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Matrix1_6">
+     <attribute name="title">
+      <string>Matrix 1-6</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>911</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="1">
+        <widget class="Line" name="line_16">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Matrix 01</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_10">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>131</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_1">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_1"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="title">
+          <string>Matrix 02</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_17">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_2"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QGroupBox" name="groupBox_15">
+         <property name="title">
+          <string>Matrix 03</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_18">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_18">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_23">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_24">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_25">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_26">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_27">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_3"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QGroupBox" name="groupBox_16">
+         <property name="title">
+          <string>Matrix 04</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_19">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_19">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_28">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_29">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_30">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_31">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_32">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_33">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_35">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_4"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="8">
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="title">
+          <string>Matrix 05</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_20">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_20">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_36">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_37">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_38">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_39">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_40">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_41">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_42">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_5"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="10">
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="title">
+          <string>Matrix 06</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_21">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_21">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_44">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_45">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_46">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_47">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_48">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_49">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_51">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_6"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="Line" name="line_18">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="Line" name="line_17">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="Line" name="line_19">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="Line" name="line_20">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="matrix7_12">
+     <attribute name="title">
+      <string>Matrix 7-12</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_22">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>911</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_22">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_19">
+         <property name="title">
+          <string>Matrix 07</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_23">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>131</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_23">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_52">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_53">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_54">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_55">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_56">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_57">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_58">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_59">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_7"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_20">
+         <property name="title">
+          <string>Matrix 08</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_24">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_24">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_60">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_61">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_62">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_63">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_64">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_65">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_66">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_67">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_8"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QGroupBox" name="groupBox_21">
+         <property name="title">
+          <string>Matrix 09</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_25">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_25">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_68">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_69">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_70">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_71">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_72">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_73">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_74">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_75">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_9"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QGroupBox" name="groupBox_22">
+         <property name="title">
+          <string>Matrix 10</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_26">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_26">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_76">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_77">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_78">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_79">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_80">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_81">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_82">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_83">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_10"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="8">
+        <widget class="QGroupBox" name="groupBox_23">
+         <property name="title">
+          <string>Matrix 11</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_27">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_27">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_84">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_85">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_86">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_87">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_88">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_89">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_90">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_91">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_11"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="10">
+        <widget class="QGroupBox" name="groupBox_24">
+         <property name="title">
+          <string>Matrix 12</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_28">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_28">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_92">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_93">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_94">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_95">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_96">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_97">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_98">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_99">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_12"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="Line" name="line_22">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="Line" name="line_21">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="Line" name="line_24">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="Line" name="line_23">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="Line" name="line_25">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="matrix13_18">
+     <attribute name="title">
+      <string>Matrix 13-18</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_29">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>911</width>
+        <height>241</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_29">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_25">
+         <property name="title">
+          <string>Matrix 13</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_30">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>131</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_30">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_100">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_101">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_102">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_103">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_104">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_105">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_106">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_107">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_13"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_26">
+         <property name="title">
+          <string>Matrix 14</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_31">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_31">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_108">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_109">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_110">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_111">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_112">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_113">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_114">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_115">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_14"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QGroupBox" name="groupBox_27">
+         <property name="title">
+          <string>Matrix 15</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_32">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_32">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_116">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_117">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_118">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_119">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_120">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_121">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_122">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_123">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_15"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QGroupBox" name="groupBox_28">
+         <property name="title">
+          <string>Matrix 16</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_33">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_33">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_124">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_125">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_126">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_127">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_128">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_129">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_130">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_131">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_16"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="8">
+        <widget class="QGroupBox" name="groupBox_29">
+         <property name="title">
+          <string>Matrix 17</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_34">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_34">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_132">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_133">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_134">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_135">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_136">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_137">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_138">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_139">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_17"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="10">
+        <widget class="QGroupBox" name="groupBox_30">
+         <property name="title">
+          <string>Matrix 18</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_35">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>141</width>
+            <height>211</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_35">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_d_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_c_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_140">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_a_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_b_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_141">
+             <property name="text">
+              <string>A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_e_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_142">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_143">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_144">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_145">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_146">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_147">
+             <property name="text">
+              <string>H</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_18"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="Line" name="line_28">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="Line" name="line_27">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="Line" name="line_29">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="Line" name="line_26">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="Line" name="line_30">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save...</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load...</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>slider_master_L</tabstop>
+  <tabstop>slider_master_R</tabstop>
+  <tabstop>check_master_mute_1</tabstop>
+  <tabstop>slider_output_1</tabstop>
+  <tabstop>slider_output_4</tabstop>
+  <tabstop>slider_output_5</tabstop>
+  <tabstop>check_out_mute_4</tabstop>
+  <tabstop>check_out_mute_1</tabstop>
+  <tabstop>combo_out_src_4</tabstop>
+  <tabstop>combo_out_src_2</tabstop>
+  <tabstop>combo_out_src_3</tabstop>
+  <tabstop>check_out_link_34</tabstop>
+  <tabstop>check_out_mute_2</tabstop>
+  <tabstop>check_out_mute_3</tabstop>
+  <tabstop>combo_out_src_1</tabstop>
+  <tabstop>check_out_link_12</tabstop>
+  <tabstop>slider_output_6</tabstop>
+  <tabstop>check_out_mute_5</tabstop>
+  <tabstop>check_out_mute_6</tabstop>
+  <tabstop>check_out_link_56</tabstop>
+  <tabstop>combo_out_src_5</tabstop>
+  <tabstop>combo_out_src_6</tabstop>
+  <tabstop>slider_output_3</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>slider_output_2</tabstop>
+  <tabstop>check_master_link_12</tabstop>
+  <tabstop>rad_pad_on_3</tabstop>
+  <tabstop>rad_pad_off_3</tabstop>
+  <tabstop>rad_imp_hiz_1</tabstop>
+  <tabstop>rad_imp_line_1</tabstop>
+  <tabstop>rad_pad_on_4</tabstop>
+  <tabstop>rad_pad_off_4</tabstop>
+  <tabstop>rad_imp_line_2</tabstop>
+  <tabstop>rad_imp_hiz_2</tabstop>
+  <tabstop>combo_in_src_1</tabstop>
+  <tabstop>combo_in_src_2</tabstop>
+  <tabstop>combo_in_src_4</tabstop>
+  <tabstop>combo_in_src_6</tabstop>
+  <tabstop>combo_in_src_5</tabstop>
+  <tabstop>rad_pad_on_1</tabstop>
+  <tabstop>rad_pad_off_1</tabstop>
+  <tabstop>rad_pad_on_2</tabstop>
+  <tabstop>rad_pad_off_2</tabstop>
+  <tabstop>combo_in_src_3</tabstop>
+  <tabstop>slider_mtx_g_1</tabstop>
+  <tabstop>slider_mtx_h_1</tabstop>
+  <tabstop>slider_mtx_d_1</tabstop>
+  <tabstop>slider_mtx_c_1</tabstop>
+  <tabstop>slider_mtx_a_1</tabstop>
+  <tabstop>slider_mtx_b_1</tabstop>
+  <tabstop>slider_mtx_e_1</tabstop>
+  <tabstop>slider_mtx_f_1</tabstop>
+  <tabstop>combo_matrix_in_1</tabstop>
+  <tabstop>slider_mtx_g_2</tabstop>
+  <tabstop>slider_mtx_h_2</tabstop>
+  <tabstop>slider_mtx_d_2</tabstop>
+  <tabstop>slider_mtx_c_2</tabstop>
+  <tabstop>slider_mtx_a_2</tabstop>
+  <tabstop>slider_mtx_b_2</tabstop>
+  <tabstop>slider_mtx_e_2</tabstop>
+  <tabstop>slider_mtx_f_2</tabstop>
+  <tabstop>combo_matrix_in_2</tabstop>
+  <tabstop>slider_mtx_g_3</tabstop>
+  <tabstop>slider_mtx_h_3</tabstop>
+  <tabstop>slider_mtx_d_3</tabstop>
+  <tabstop>slider_mtx_c_3</tabstop>
+  <tabstop>slider_mtx_a_3</tabstop>
+  <tabstop>slider_mtx_b_3</tabstop>
+  <tabstop>slider_mtx_e_3</tabstop>
+  <tabstop>slider_mtx_f_3</tabstop>
+  <tabstop>combo_matrix_in_3</tabstop>
+  <tabstop>slider_mtx_g_4</tabstop>
+  <tabstop>slider_mtx_h_4</tabstop>
+  <tabstop>slider_mtx_d_4</tabstop>
+  <tabstop>slider_mtx_c_4</tabstop>
+  <tabstop>slider_mtx_a_4</tabstop>
+  <tabstop>slider_mtx_b_4</tabstop>
+  <tabstop>slider_mtx_e_4</tabstop>
+  <tabstop>slider_mtx_f_4</tabstop>
+  <tabstop>combo_matrix_in_4</tabstop>
+  <tabstop>slider_mtx_g_5</tabstop>
+  <tabstop>slider_mtx_h_5</tabstop>
+  <tabstop>slider_mtx_d_5</tabstop>
+  <tabstop>slider_mtx_c_5</tabstop>
+  <tabstop>slider_mtx_a_5</tabstop>
+  <tabstop>slider_mtx_b_5</tabstop>
+  <tabstop>slider_mtx_e_5</tabstop>
+  <tabstop>slider_mtx_f_5</tabstop>
+  <tabstop>combo_matrix_in_5</tabstop>
+  <tabstop>slider_mtx_g_6</tabstop>
+  <tabstop>slider_mtx_h_6</tabstop>
+  <tabstop>slider_mtx_d_6</tabstop>
+  <tabstop>slider_mtx_c_6</tabstop>
+  <tabstop>slider_mtx_a_6</tabstop>
+  <tabstop>slider_mtx_b_6</tabstop>
+  <tabstop>slider_mtx_e_6</tabstop>
+  <tabstop>slider_mtx_f_6</tabstop>
+  <tabstop>combo_matrix_in_6</tabstop>
+  <tabstop>slider_mtx_g_7</tabstop>
+  <tabstop>slider_mtx_h_7</tabstop>
+  <tabstop>slider_mtx_d_7</tabstop>
+  <tabstop>slider_mtx_c_7</tabstop>
+  <tabstop>slider_mtx_a_7</tabstop>
+  <tabstop>slider_mtx_b_7</tabstop>
+  <tabstop>slider_mtx_e_7</tabstop>
+  <tabstop>slider_mtx_f_7</tabstop>
+  <tabstop>combo_matrix_in_7</tabstop>
+  <tabstop>slider_mtx_g_8</tabstop>
+  <tabstop>slider_mtx_h_8</tabstop>
+  <tabstop>slider_mtx_d_8</tabstop>
+  <tabstop>slider_mtx_c_8</tabstop>
+  <tabstop>slider_mtx_a_8</tabstop>
+  <tabstop>slider_mtx_b_8</tabstop>
+  <tabstop>slider_mtx_e_8</tabstop>
+  <tabstop>slider_mtx_f_8</tabstop>
+  <tabstop>combo_matrix_in_8</tabstop>
+  <tabstop>slider_mtx_g_9</tabstop>
+  <tabstop>slider_mtx_h_9</tabstop>
+  <tabstop>slider_mtx_d_9</tabstop>
+  <tabstop>slider_mtx_c_9</tabstop>
+  <tabstop>slider_mtx_a_9</tabstop>
+  <tabstop>slider_mtx_b_9</tabstop>
+  <tabstop>slider_mtx_e_9</tabstop>
+  <tabstop>slider_mtx_f_9</tabstop>
+  <tabstop>combo_matrix_in_9</tabstop>
+  <tabstop>slider_mtx_g_10</tabstop>
+  <tabstop>slider_mtx_h_10</tabstop>
+  <tabstop>slider_mtx_d_10</tabstop>
+  <tabstop>slider_mtx_c_10</tabstop>
+  <tabstop>slider_mtx_a_10</tabstop>
+  <tabstop>slider_mtx_b_10</tabstop>
+  <tabstop>slider_mtx_e_10</tabstop>
+  <tabstop>slider_mtx_f_10</tabstop>
+  <tabstop>combo_matrix_in_10</tabstop>
+  <tabstop>slider_mtx_g_11</tabstop>
+  <tabstop>slider_mtx_h_11</tabstop>
+  <tabstop>slider_mtx_d_11</tabstop>
+  <tabstop>slider_mtx_c_11</tabstop>
+  <tabstop>slider_mtx_a_11</tabstop>
+  <tabstop>slider_mtx_b_11</tabstop>
+  <tabstop>slider_mtx_e_11</tabstop>
+  <tabstop>slider_mtx_f_11</tabstop>
+  <tabstop>combo_matrix_in_11</tabstop>
+  <tabstop>slider_mtx_g_12</tabstop>
+  <tabstop>slider_mtx_h_12</tabstop>
+  <tabstop>slider_mtx_d_12</tabstop>
+  <tabstop>slider_mtx_c_12</tabstop>
+  <tabstop>slider_mtx_a_12</tabstop>
+  <tabstop>slider_mtx_b_12</tabstop>
+  <tabstop>slider_mtx_e_12</tabstop>
+  <tabstop>slider_mtx_f_12</tabstop>
+  <tabstop>combo_matrix_in_12</tabstop>
+  <tabstop>slider_mtx_g_13</tabstop>
+  <tabstop>slider_mtx_h_13</tabstop>
+  <tabstop>slider_mtx_d_13</tabstop>
+  <tabstop>slider_mtx_c_13</tabstop>
+  <tabstop>slider_mtx_a_13</tabstop>
+  <tabstop>slider_mtx_b_13</tabstop>
+  <tabstop>slider_mtx_e_13</tabstop>
+  <tabstop>slider_mtx_f_13</tabstop>
+  <tabstop>combo_matrix_in_13</tabstop>
+  <tabstop>slider_mtx_g_14</tabstop>
+  <tabstop>slider_mtx_h_14</tabstop>
+  <tabstop>slider_mtx_d_14</tabstop>
+  <tabstop>slider_mtx_c_14</tabstop>
+  <tabstop>slider_mtx_a_14</tabstop>
+  <tabstop>slider_mtx_b_14</tabstop>
+  <tabstop>slider_mtx_e_14</tabstop>
+  <tabstop>slider_mtx_f_14</tabstop>
+  <tabstop>combo_matrix_in_14</tabstop>
+  <tabstop>slider_mtx_g_15</tabstop>
+  <tabstop>slider_mtx_h_15</tabstop>
+  <tabstop>slider_mtx_d_15</tabstop>
+  <tabstop>slider_mtx_c_15</tabstop>
+  <tabstop>slider_mtx_a_15</tabstop>
+  <tabstop>slider_mtx_b_15</tabstop>
+  <tabstop>slider_mtx_e_15</tabstop>
+  <tabstop>slider_mtx_f_15</tabstop>
+  <tabstop>combo_matrix_in_15</tabstop>
+  <tabstop>slider_mtx_g_16</tabstop>
+  <tabstop>slider_mtx_h_16</tabstop>
+  <tabstop>slider_mtx_d_16</tabstop>
+  <tabstop>slider_mtx_c_16</tabstop>
+  <tabstop>slider_mtx_a_16</tabstop>
+  <tabstop>slider_mtx_b_16</tabstop>
+  <tabstop>slider_mtx_e_16</tabstop>
+  <tabstop>slider_mtx_f_16</tabstop>
+  <tabstop>combo_matrix_in_16</tabstop>
+  <tabstop>slider_mtx_g_17</tabstop>
+  <tabstop>slider_mtx_h_17</tabstop>
+  <tabstop>slider_mtx_d_17</tabstop>
+  <tabstop>slider_mtx_c_17</tabstop>
+  <tabstop>slider_mtx_a_17</tabstop>
+  <tabstop>slider_mtx_b_17</tabstop>
+  <tabstop>slider_mtx_e_17</tabstop>
+  <tabstop>slider_mtx_f_17</tabstop>
+  <tabstop>combo_matrix_in_17</tabstop>
+  <tabstop>slider_mtx_g_18</tabstop>
+  <tabstop>slider_mtx_h_18</tabstop>
+  <tabstop>slider_mtx_d_18</tabstop>
+  <tabstop>slider_mtx_c_18</tabstop>
+  <tabstop>slider_mtx_a_18</tabstop>
+  <tabstop>slider_mtx_b_18</tabstop>
+  <tabstop>slider_mtx_e_18</tabstop>
+  <tabstop>slider_mtx_f_18</tabstop>
+  <tabstop>combo_matrix_in_18</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

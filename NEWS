@@ -1,0 +1,7 @@
+Changes between 0.1 and 0.14:
+-----------------------------
+
+-added save/load functionality
+-added command line interface
+-fixed minor UI issues
+-changed some functionality behind the scenes
