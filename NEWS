@@ -1,6 +1,10 @@
+Changes to 0.16:
+----------------
+-added loop that updates controls when modified by other programs
+-added support for arbitrary alsa devices
+
 Changes between 0.1 and 0.14:
 -----------------------------
-
 -added save/load functionality
 -added command line interface
 -fixed minor UI issues

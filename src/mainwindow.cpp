@@ -276,13 +276,9 @@ MainWindow::MainWindow(QWidget *parent) :
         if(i>=2) break;
         mixctrl.vol_master[i]->setTracking(1);
     }
-    mixer = new MixSis(&mixctrl, this);
+    mixer = new MixSis(&mixctrl, device, this);
 
     createMenu();
-
-    // this doesn't work yet
-    //cw = new ChangeWatcher(mixer->hctl, this);
-    //cw->start();
 
 }
 
@@ -290,6 +286,14 @@ MainWindow::~MainWindow()
 {
     delete mixer;
     delete ui;
+}
+
+bool MainWindow::event(QEvent *ev){
+    if(ev->type() == QEvent::Quit){
+        exit(-1);
+        return false;
+    }
+    return QWidget::event(ev);
 }
 
 int MainWindow::loadFrom(const char* filename){

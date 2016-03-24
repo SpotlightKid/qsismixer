@@ -1,14 +1,14 @@
 #include <cstring>
 #include <QtCore>
+#include <poll.h>
 #include "mixsis.h"
 
-MixSis::MixSis(MixSisCtrl *ctrls, QObject *obj) : controls(ctrls)
+MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(ctrls), parent(obj)
 {
     int err;
-    // find scarlett USB audio... TODO make this generic
-    err = snd_hctl_open(&hctl, "hw:USB", 0);
+    err = snd_hctl_open(&hctl, device, 0);
     if(err){
-        printf("error: unable to access mixer. error %d\n", err);
+        printf("error: unable to access device %s. error %s\n", device, strerror(err));
         exit(err);
     }
     err = snd_hctl_load(hctl);
@@ -16,7 +16,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, QObject *obj) : controls(ctrls)
         printf("error: unable to load mixer hctl. error%d\n", err);
         exit(err);
     }
-    // get audio control from alsa... shouldn't do this
+    // TODO: just use ctl no hctl
     ctl = snd_hctl_ctl(hctl);
 
     snd_ctl_elem_id_t *id;
@@ -60,43 +60,6 @@ MixSis::MixSis(MixSisCtrl *ctrls, QObject *obj) : controls(ctrls)
         ctrls->vol_master[k]->setMaximum((int)maxdB);
         ctrls->vol_master[k]->setTracking(trackingp);
     }
-    snd_hctl_set_callback(hctl, [](snd_hctl_t *hctl, unsigned int mask, snd_hctl_elem_t *helem)->int{
-        MixSisCtrl *it = (MixSisCtrl*) snd_hctl_get_callback_private(hctl);
-        if(snd_hctl_elem_get_interface(helem) != SND_CTL_ELEM_IFACE_MIXER){
-            return 0;
-        }
-        if(!(mask & SND_CTL_EVENT_MASK_VALUE ) ){
-            return 0;
-        }
-        snd_ctl_elem_value_t *value;
-        snd_ctl_elem_value_alloca(&value);
-        snd_ctl_elem_info_t *info;
-        snd_ctl_elem_info_alloca(&info);
-        snd_hctl_elem_info(helem, info);
-        snd_hctl_elem_read(helem, value);
-        int alsanum = snd_hctl_elem_get_numid(helem);
-        int idx = snd_hctl_elem_get_index(helem);
-        int nval;
-        snd_ctl_elem_type_t type;
-        switch(type = snd_ctl_elem_info_get_type(info)){
-        case SND_CTL_ELEM_TYPE_INTEGER:
-            nval = snd_ctl_elem_value_get_integer(value, idx);
-            break;
-        case SND_CTL_ELEM_TYPE_ENUMERATED:
-            nval = snd_ctl_elem_value_get_enumerated(value, idx);
-            break;
-        case SND_CTL_ELEM_TYPE_BOOLEAN:
-            nval = snd_ctl_elem_value_get_boolean(value, idx);
-            break;
-        default:
-            fprintf(stderr, "error! invalid snd ctl info type %d\n", type);
-            nval = 0;
-            break;
-        }
-        it->set(alsanum, nval, idx);
-        return 0;
-    });
-    snd_hctl_set_callback_private(hctl, ctrls);
     // get control values from alsa and set widgets accordingly
     // TODO: this should be its own function, maybe even callback from alsa to update control changes
     for(int i=(int)MixSisCtrl::alsa_numid::MSTR_SWITCH; i<=(int)MixSisCtrl::alsa_numid::INPUT_ROUTE_6; ++i){
@@ -318,8 +281,8 @@ MixSis::MixSis(MixSisCtrl *ctrls, QObject *obj) : controls(ctrls)
 
 
     }
-
-
+    watch = new ChangeWatcher(ctl, controls, parent);
+    watch->start();
 }
 
 MixSis::~MixSis(){

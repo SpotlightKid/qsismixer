@@ -20,7 +20,8 @@ SOURCES += src/main.cpp\
 
 HEADERS  += include/mainwindow.h \
     include/mixsis.h \
-    include/mixsisctrl.h
+    include/mixsisctrl.h \
+    include/changewatcher.h
 
 FORMS    += mainwindow.ui
 

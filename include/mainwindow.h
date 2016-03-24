@@ -7,6 +7,8 @@
 
 #include "mixsis.h"
 
+extern const char* device;
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +24,7 @@ public:
     void loop();
     int loadFrom(const char* filename);
     int saveTo(const char* filename);
+    bool event(QEvent *ev);
 
 private:
         class ChangeWatcher;
