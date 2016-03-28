@@ -45,8 +45,8 @@ struct MixSisCtrl
     QCheckBox *vol_out_link[3];
     QComboBox *out_src[6];
     QComboBox *in_src[6];
-    QRadioButton *in_imp[2];
-    QRadioButton *in_pad[4];
+    QRadioButton *in_imp[4];
+    QRadioButton *in_pad[8];
     QComboBox *mtx_src[18];
     QSlider *mtx_vol[18][8];
 

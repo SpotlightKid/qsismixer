@@ -1,7 +1,8 @@
 #include "qthread.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include "qmenubar.h"
+#include "ui_mainwindow.h"
+#include "changewatcher.h"
+#include "mainwindow.h"
 
 const char *mixerEnumValues[] = {"Off", "PCM 1", "PCM 2", "PCM 3", "PCM 4", "PCM 5", "PCM 6", "PCM 7", "PCM 8", "PCM 9", "PCM 10", "PCM 11", "PCM 12",
                               "Analog 1", "Analog 2", "Analog 3", "Analog 4", "SPDIF 1", "SPDIF 2", "Mix A", "Mix B", "Mix C", "Mix D", "Mix E", "Mix F", "Mix G", "Mix H"};
@@ -76,12 +77,18 @@ MainWindow::MainWindow(QWidget *parent) :
     mixctrl.in_src[3]  = ui->combo_in_src_4;
     mixctrl.in_src[4]  = ui->combo_in_src_5;
     mixctrl.in_src[5]  = ui->combo_in_src_6;
-    mixctrl.in_imp[0] = ui->rad_imp_hiz_1;
-    mixctrl.in_imp[1] = ui->rad_imp_hiz_2;
-    mixctrl.in_pad[0] = ui->rad_pad_on_1;
-    mixctrl.in_pad[1] = ui->rad_pad_on_2;
-    mixctrl.in_pad[2] = ui->rad_pad_on_3;
-    mixctrl.in_pad[3] = ui->rad_pad_on_4;
+    mixctrl.in_imp[0] = ui->rad_imp_line_1;
+    mixctrl.in_imp[1] = ui->rad_imp_hiz_1;
+    mixctrl.in_imp[2] = ui->rad_imp_line_2;
+    mixctrl.in_imp[3] = ui->rad_imp_hiz_2;
+    mixctrl.in_pad[0] = ui->rad_pad_off_1;
+    mixctrl.in_pad[1] = ui->rad_pad_on_1;
+    mixctrl.in_pad[2] = ui->rad_pad_off_2;
+    mixctrl.in_pad[3] = ui->rad_pad_on_2;
+    mixctrl.in_pad[4] = ui->rad_pad_off_3;
+    mixctrl.in_pad[5] = ui->rad_pad_on_3;
+    mixctrl.in_pad[6] = ui->rad_pad_off_4;
+    mixctrl.in_pad[7] = ui->rad_pad_on_4;
 
     mixctrl.mtx_src[0] = ui->combo_matrix_in_1;
     mixctrl.mtx_src[1] = ui->combo_matrix_in_2;
@@ -278,8 +285,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     mixer = new MixSis(&mixctrl, device, this);
 
-    createMenu();
+    watch = new ChangeWatcher(mixer->ctl, this);
+    QObject::connect(watch, &ChangeWatcher::changeVal, this, &MainWindow::setVal);
+    watch->start();
 
+    createMenu();
 }
 
 MainWindow::~MainWindow()
@@ -328,4 +338,8 @@ void MainWindow::createMenu(){
     fileMenu->addAction(saveAct);
     fileMenu->addAction(loadAct);
     fileMenu->addAction(exitAct);
+}
+
+void MainWindow::setVal(int alsa_id, int value, int idx){
+    mixctrl.set(alsa_id, value, idx);
 }

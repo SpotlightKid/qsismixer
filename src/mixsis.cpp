@@ -223,7 +223,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         if(n >= 4) continue;
         obj->connect(ctrls->in_pad[n], &QRadioButton::toggled,
                      [=](){
-            bool value = ctrls->in_pad[n]->isChecked();
+            bool value = ctrls->in_pad[2*n+1]->isChecked();
             MixSisCtrl::alsa_numid ctl;
             switch(n){
             case 0:
@@ -247,7 +247,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         if(n >= 2) continue;
         obj->connect(ctrls->in_imp[n], &QRadioButton::toggled,
                      [=](){
-           bool value = ctrls->in_imp[n]->isChecked();
+           bool value = ctrls->in_imp[2*n+1]->isChecked();
            MixSisCtrl::alsa_numid ctl;
            if(n == 0){
                ctl = MixSisCtrl::alsa_numid::IN_IMP_1;
@@ -281,8 +281,6 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
 
 
     }
-    watch = new ChangeWatcher(ctl, controls, parent);
-    watch->start();
 }
 
 MixSis::~MixSis(){

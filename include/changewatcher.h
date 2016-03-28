@@ -5,12 +5,13 @@
 #include "alsa/asoundlib.h"
 #include "mixsisctrl.h"
 class ChangeWatcher : public QThread{
-
+Q_OBJECT
 public:
-    ChangeWatcher(snd_ctl_t *ctl, MixSisCtrl *sisctrl, QObject *parent);
+    ChangeWatcher(snd_ctl_t *ctl, QObject *parent);
     void run();
     snd_ctl_t *ctl;
-    MixSisCtrl *sisctrl;
+signals:
+    void changeVal(int numid, int val, int idx);
 };
 
 #endif // CHANGEWATCHER_H

@@ -22,7 +22,6 @@ public:
     int volume_from_value(int);
     snd_hctl_t *hctl;
     QObject *parent;
-        private:
     snd_ctl_t *ctl;
     void set(MixSisCtrl::alsa_numid, int, int = 0);
     //void set_vol(alsa_numid, int, int = 0);
@@ -30,7 +29,6 @@ public:
     long mindB, maxdB;
 
     snd_mixer_t *mixer;
-    ChangeWatcher *watch;
 
 };
 

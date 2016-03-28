@@ -134,13 +134,11 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
             vol_master[0]->setValue(db);
             vol_master[1]->setValue(db);
         break;
-    case OUT_SWITCH_12:
-        j = 1;
-    case OUT_SWITCH_34:
-        if(!j) j=3;
     case OUT_SWITCH_56:
-        if(!j) j=5;
-        j--;
+        j+=2;
+    case OUT_SWITCH_34:
+        j+=2;
+    case OUT_SWITCH_12:
         vol_out_mute[j+idx]->setChecked(!value);
         break;
     case OUT_VOL_56:
@@ -166,7 +164,7 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
     case IN_IMP_2:
         ++j;
     case IN_IMP_1:
-        in_imp[j]->setChecked((bool)value);
+        in_imp[2*j + value]->setChecked(1);
         break;
     case IN_PAD_4:
         ++j;
@@ -175,7 +173,7 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
     case IN_PAD_2:
         ++j;
     case IN_PAD_1:
-        in_pad[j]->setChecked((bool)value);
+        in_pad[2*j + value]->setChecked(1);
         break;
     case INPUT_ROUTE_6:
         ++j;
@@ -523,5 +521,7 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
     case MATRIX_H_1:
         mtx_vol[j][7]->setValue(value);
         break;
+    default:
+        fprintf(stderr, "invalid alsa ID: %d\n", alsa_id);
     }
 }

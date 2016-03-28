@@ -4,7 +4,7 @@
 #include "mainwindow.h"
 #include "mixsis.h"
 
-ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, MixSisCtrl *sisctrl, QObject *parent): QThread(parent), ctl(ctl), sisctrl(sisctrl){
+ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, QObject *parent): QThread(parent), ctl(ctl){
 
 }
 
@@ -17,7 +17,7 @@ void ChangeWatcher::run(){
     int err;
     int numid, idx, val;
     snd_ctl_elem_value_t *value;
-
+    snd_ctl_elem_info_t *info;
     snd_ctl_elem_id_t *id;
     while(!this->isInterruptionRequested()){
         snd_ctl_poll_descriptors(ctl, &fd, 1);
@@ -48,17 +48,35 @@ void ChangeWatcher::run(){
             }
             snd_ctl_elem_value_alloca(&value);
             snd_ctl_elem_id_alloca(&id);
+            snd_ctl_elem_info_alloca(&info);
             snd_ctl_event_elem_get_id(event, id);
             snd_ctl_elem_value_set_id(value,id);
             snd_ctl_elem_read(ctl,value);
 
-
-            numid = snd_ctl_event_elem_get_numid(event);
             idx = snd_ctl_event_elem_get_index(event);
-            val = snd_ctl_elem_value_get_integer(value,idx);
+            numid = snd_ctl_event_elem_get_numid(event);
 
-            sisctrl->set(numid, val, idx);
+            snd_ctl_elem_info_set_numid(info, numid);
+            snd_ctl_elem_info(ctl, info);
+
+            switch(snd_ctl_elem_info_get_type(info)){
+            case SND_CTL_ELEM_TYPE_BOOLEAN:
+                    val = snd_ctl_elem_value_get_boolean(value, idx);
+                break;
+            case SND_CTL_ELEM_TYPE_ENUMERATED:
+                val = snd_ctl_elem_value_get_enumerated(value, idx);
+                break;
+            default:
+                fprintf(stderr, "changewatcher: invalid snd ctl elem type %s\n", snd_ctl_elem_type_name(snd_ctl_elem_info_get_type(info)));
+            case SND_CTL_ELEM_TYPE_INTEGER:
+                val = snd_ctl_elem_value_get_integer(value, idx);
+            }
+
+            fprintf(stderr, "numid: %d; val:%d; idx:%d\n", numid, val, idx);
+
+            emit changeVal(numid, val, idx);
         }
     }
     exit(0);
 }
+

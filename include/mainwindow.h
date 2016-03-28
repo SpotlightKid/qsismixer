@@ -6,7 +6,7 @@
 #include <QAction>
 
 #include "mixsis.h"
-
+#include "changewatcher.h"
 extern const char* device;
 
 namespace Ui {
@@ -26,9 +26,11 @@ public:
     int saveTo(const char* filename);
     bool event(QEvent *ev);
 
+public slots:
+    void setVal(int alsa_id, int value, int idx = 0);
+
 private:
-        class ChangeWatcher;
-        ChangeWatcher * cw;
+    ChangeWatcher *watch;
     Ui::MainWindow *ui;
     MixSis *mixer;
     MixSisCtrl mixctrl;
