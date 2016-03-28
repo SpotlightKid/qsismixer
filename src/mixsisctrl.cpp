@@ -30,7 +30,7 @@ int MixSisCtrl::save_to(QString &filename){
     cfg.writeRawData(magicn, 4);
     for(int i=0; i<2; ++i){
         cfg << (qint32)vol_master[i]->value();
-        cfg << (qint32)in_imp[i]->isChecked();
+        cfg << (qint32)in_imp[i*2+1]->isChecked();
     }
     cfg << (qint32) vol_master_mute->isChecked();
     cfg << (qint32) vol_master_link->isChecked();
@@ -44,7 +44,7 @@ int MixSisCtrl::save_to(QString &filename){
         cfg << (qint32) vol_out_link[i]->isChecked();
     }
     for(int i=0; i<4; ++i){
-        cfg << (qint32) in_pad[i]->isChecked();
+        cfg << (qint32) in_pad[i*2+1]->isChecked();
     }
     for(int i=0; i<18; ++i){
         cfg << (qint32) mtx_src[i]->currentIndex();
@@ -86,7 +86,7 @@ int MixSisCtrl::load_from(QString &filename){
         cfg >> tmp;
         vol_master[i]->setValue(tmp);
         cfg >> tmp;
-        in_imp[i]->setChecked(tmp);
+        in_imp[i*2+1]->setChecked(tmp);
     }
     cfg >> tmp;
     vol_master_mute->setChecked(tmp);
@@ -108,7 +108,7 @@ int MixSisCtrl::load_from(QString &filename){
     }
     for(int i=0; i<4; ++i){
         cfg >> tmp;
-        in_pad[i]->setChecked(tmp);
+        in_pad[i*2+1]->setChecked(tmp);
     }
     for(int i=0; i<18; ++i){
         cfg >> tmp;
