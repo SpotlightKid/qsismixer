@@ -18,8 +18,8 @@ public:
     MixSis(MixSisCtrl* ctrls, const char *device, QObject *obj);
     ~MixSis();
     MixSisCtrl *controls;
-    int value_from_volume(int);
-    int volume_from_value(int);
+    static int dB_from_volume(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_t *control);
+    static int volume_from_dB(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_t *control);
     snd_hctl_t *hctl;
     QObject *parent;
     snd_ctl_t *ctl;

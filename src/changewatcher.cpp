@@ -5,7 +5,6 @@
 #include "mixsis.h"
 
 ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, QObject *parent): QThread(parent), ctl(ctl){
-
 }
 
 void ChangeWatcher::run(){
@@ -38,7 +37,7 @@ void ChangeWatcher::run(){
             }
             mask = snd_ctl_event_elem_get_mask(event);
             if(mask == SND_CTL_EVENT_MASK_REMOVE){
-                fprintf(stderr,"signal: alsa device removed, goodbye\n");
+                fprintf(stdout,"signal: alsa device removed, goodbye\n");
                 QEvent quitting(QEvent::Quit);
                 ((MainWindow*)parent())->event(&quitting);
                 exit(-1);
@@ -58,7 +57,7 @@ void ChangeWatcher::run(){
 
             snd_ctl_elem_info_set_numid(info, numid);
             snd_ctl_elem_info(ctl, info);
-
+            bool isVolume = MixSisCtrl::numidIsVolume( (MixSisCtrl::alsa_numid) numid );
             switch(snd_ctl_elem_info_get_type(info)){
             case SND_CTL_ELEM_TYPE_BOOLEAN:
                     val = snd_ctl_elem_value_get_boolean(value, idx);
@@ -72,11 +71,16 @@ void ChangeWatcher::run(){
                 val = snd_ctl_elem_value_get_integer(value, idx);
             }
 
-            fprintf(stderr, "numid: %d; val:%d; idx:%d\n", numid, val, idx);
-
+            //fprintf(stderr, "numid: %d; val:%d; idx:%d\n", numid, val, idx);
+            if(isVolume){
+                val = MixSis::dB_from_volume(val, (MixSisCtrl::alsa_numid) numid, ctl);
+            }
             emit changeVal(numid, val, idx);
         }
     }
     exit(0);
 }
 
+void ChangeWatcher::signalChange(int numid, int val, int idx){
+    changeVal(numid, val, idx);
+}

@@ -2,7 +2,6 @@ To build+install, enter commands:
 
 qmake
 make
-sudo ./install.sh ($PREFIX)
+sudo make install
 
-$PREFIX is an optional argument that will specify install base directory
-default prefix is /usr/local
+(currently only installs to /usr/local/bin)

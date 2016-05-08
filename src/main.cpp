@@ -71,6 +71,6 @@ void help(){
 
 void version(){
     fprintf(stdout, "Qt Sixisix Mixer\n"
-            "version 0.16\n"
-            "March 24, 2016\n");
+            "version 0.17\n"
+            "May 08, 2016\n");
 }

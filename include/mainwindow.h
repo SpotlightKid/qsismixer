@@ -39,6 +39,8 @@ private:
     QAction *saveAct;
     QAction *loadAct;
     QAction *exitAct;
+    QMenu *editMenu;
+    QAction *clearMtxAct;
     void createMenu();
 };
 

@@ -9,6 +9,32 @@
 
 const char *magicn = "QSIS";
 
+bool MixSisCtrl::numidIsVolume(alsa_numid test){
+    if(test == MSTR_VOL) return 1;
+    if(test == OUT_VOL_12 ) return 1;
+    if(test == OUT_VOL_34) return 1;
+    if(test == OUT_VOL_56) return 1;
+    if(test >= MATRIX_A_1 && test <= MATRIX_H_1) return 1;
+    if(test >= MATRIX_A_2 && test <= MATRIX_H_2) return 1;
+    if(test >= MATRIX_A_3 && test <= MATRIX_H_3) return 1;
+    if(test >= MATRIX_A_4 && test <= MATRIX_H_4) return 1;
+    if(test >= MATRIX_A_5 && test <= MATRIX_H_5) return 1;
+    if(test >= MATRIX_A_6 && test <= MATRIX_H_6) return 1;
+    if(test >= MATRIX_A_7 && test <= MATRIX_H_7) return 1;
+    if(test >= MATRIX_A_8 && test <= MATRIX_H_8) return 1;
+    if(test >= MATRIX_A_9 && test <= MATRIX_H_9) return 1;
+    if(test >= MATRIX_A_10 && test <= MATRIX_H_10) return 1;
+    if(test >= MATRIX_A_11 && test <= MATRIX_H_11) return 1;
+    if(test >= MATRIX_A_12 && test <= MATRIX_H_12) return 1;
+    if(test >= MATRIX_A_13 && test <= MATRIX_H_13) return 1;
+    if(test >= MATRIX_A_14 && test <= MATRIX_H_14) return 1;
+    if(test >= MATRIX_A_15 && test <= MATRIX_H_15) return 1;
+    if(test >= MATRIX_A_16 && test <= MATRIX_H_16) return 1;
+    if(test >= MATRIX_A_17 && test <= MATRIX_H_17) return 1;
+    if(test >= MATRIX_A_18 && test <= MATRIX_H_18) return 1;
+    return 0;
+}
+
 int MixSisCtrl::save_to_dialog(QWidget *context){
     QString directory = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
     QString filen = QFileDialog::getSaveFileName(context, context->tr("Save Configuration As..."), directory.append(context->tr("/qsismix.6i6")), context->tr("Sixisix Configs (*.6i6)"));

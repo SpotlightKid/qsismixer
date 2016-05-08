@@ -10,6 +10,7 @@ public:
     ChangeWatcher(snd_ctl_t *ctl, QObject *parent);
     void run();
     snd_ctl_t *ctl;
+    void signalChange(int numid, int val, int idx);
 signals:
     void changeVal(int numid, int val, int idx);
 };

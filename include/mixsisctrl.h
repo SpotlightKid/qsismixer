@@ -37,6 +37,8 @@ struct MixSisCtrl
 
     };
 
+    static bool numidIsVolume(alsa_numid test);
+
     QSlider *vol_master[2];
     QCheckBox *vol_master_mute;
     QCheckBox *vol_master_link;

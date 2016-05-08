@@ -20,5 +20,4 @@ The card has a powerful hardware mixer. I find this program easier to use than a
 Now including static configurations: qsismix can save and load arbitrary configurations from the command line
 
 TODO:
-finish the functionality that updates changes from alsa
 an options menu would be cool, if qsismix had options

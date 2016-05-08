@@ -27,6 +27,13 @@ FORMS    += mainwindow.ui
 
 CONFIG += c++11
 
+QMAKE_CXXFLAGS += -std=gnu++11
+
 LIBS += -lasound
 
 INCLUDEPATH += include
+
+bin.path = /usr/local/bin
+bin.files = $${OUT_PWD}/qsismix
+
+INSTALLS += bin
