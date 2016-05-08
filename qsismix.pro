@@ -33,7 +33,14 @@ LIBS += -lasound
 
 INCLUDEPATH += include
 
-bin.path = /usr/local/bin
+INSTALLDIR = /usr/local
+
+bin.path = $${INSTALLDIR}/bin
 bin.files = $${OUT_PWD}/qsismix
 
 INSTALLS += bin
+
+icon.path = $${INSTALLDIR}/share/icons/hicolor/512x512/apps
+icon.files = $${PWD}/icons/hicolor/qsismix.png
+
+INSTALLS += icon
