@@ -16,8 +16,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         printf("error: unable to load mixer hctl. error%d\n", err);
         exit(err);
     }
-    // TODO: just use ctl no hctl
-    // QUANDARY: is that even possible?
+    // boot up alsa interface
     ctl = snd_hctl_ctl(hctl);
 
     snd_ctl_elem_id_t *id;
@@ -62,7 +61,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         ctrls->vol_master[k]->setTracking(trackingp);
     }
     // get control values from alsa and set widgets accordingly
-    for(int i=(int)MixSisCtrl::alsa_numid::MSTR_SWITCH; i<=(int)MixSisCtrl::alsa_numid::INPUT_ROUTE_6; ++i){
+    for(int i=(int)alsa_numid::MSTR_SWITCH; i<=(int)alsa_numid::INPUT_ROUTE_6; ++i){
         /// this seems roundabout but is necessary due to an alsa bug
         snd_ctl_elem_id_set_numid(id, i);
         snd_ctl_elem_info_set_id(info, id);
@@ -76,12 +75,12 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         snd_hctl_elem_read(helem, value);
         int count = snd_ctl_elem_info_get_count(info);
         int val;
-        bool isVolume = MixSisCtrl::numidIsVolume((MixSisCtrl::alsa_numid)i);
+        bool isVolume = MixSisCtrl::numidIsVolume((alsa_numid)i);
         for(int idx = 0; idx < count; ++idx){
             if(type == SND_CTL_ELEM_TYPE_INTEGER){
                 val = snd_ctl_elem_value_get_integer(value,idx);
                 if(isVolume){
-                    val = dB_from_volume(val, (MixSisCtrl::alsa_numid)i, ctl);
+                    val = dB_from_volume(val, (alsa_numid)i, ctl);
                 }
                 ctrls->set(i,val, idx);
             }
@@ -99,25 +98,25 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         }
 
     }
-
+    // hook up callback lambdas
     obj->connect(ctrls->vol_master[0], &QSlider::valueChanged,
             [=](){
-        int sixiVol = volume_from_dB(ctrls->vol_master[0]->value(),MixSisCtrl::alsa_numid::MSTR_VOL, ctl);
-        set(MixSisCtrl::alsa_numid::MSTR_VOL, sixiVol);
+        int sixiVol = volume_from_dB(ctrls->vol_master[0]->value(),alsa_numid::MSTR_VOL, ctl);
+        set(alsa_numid::MSTR_VOL, sixiVol);
         ctrls->vol_master[1]->setValue(ctrls->vol_master[0]->value());
     });
     obj->connect(ctrls->vol_master[1], &QSlider::valueChanged,
             [=](){
-        int sixiVol = volume_from_dB(ctrls->vol_master[1]->value(),MixSisCtrl::alsa_numid::MSTR_VOL, ctl);
-        set(MixSisCtrl::alsa_numid::MSTR_VOL, ctrls->vol_master[1]->value());
+        int sixiVol = volume_from_dB(ctrls->vol_master[1]->value(),alsa_numid::MSTR_VOL, ctl);
+        set(alsa_numid::MSTR_VOL, sixiVol);
         ctrls->vol_master[0]->setValue(ctrls->vol_master[1]->value());
     });
     obj->connect(ctrls->vol_master_mute, &QCheckBox::stateChanged,
             [=](int checkstate){
-        set(MixSisCtrl::alsa_numid::MSTR_SWITCH, ! (checkstate == Qt::Checked), 0);
+        set(alsa_numid::MSTR_SWITCH, ! (checkstate == Qt::Checked), 0);
     });
     int n;
-    // todo: the if statements and all should perhaps be outside the lambda? works fine this way, though. if it ain't broke.
+    // todo: the if statements should perhaps be outside the lambda? works fine this way, though. if it ain't broke.
     for(n=0; n<6; ++n){
         obj->connect(ctrls->vol_out[n], &QSlider::valueChanged,
                 [=](){
@@ -129,15 +128,15 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                     ctrls->vol_out[other_idx]->setValue(volume);
                 }
             }
-            MixSisCtrl::alsa_numid control_id;
+            alsa_numid control_id;
             if(which_control == 0){
-                control_id = MixSisCtrl::alsa_numid::OUT_VOL_12;
+                control_id = alsa_numid::OUT_VOL_12;
             }
             else if(which_control == 1){
-                control_id = MixSisCtrl::alsa_numid::OUT_VOL_34;
+                control_id = alsa_numid::OUT_VOL_34;
             }
             else if(which_control == 2){
-                control_id = MixSisCtrl::alsa_numid::OUT_VOL_56;
+                control_id = alsa_numid::OUT_VOL_56;
             }
             else{
                 fprintf(stderr, "invalid volume out set: %d\n how did this happen\n", which_control);
@@ -157,15 +156,15 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                     ctrls->vol_out_mute[other_idx]->setChecked(value);
                 }
             }
-            MixSisCtrl::alsa_numid control_id;
+            alsa_numid control_id;
             if(which_control == 0){
-                control_id = MixSisCtrl::alsa_numid::OUT_SWITCH_12;
+                control_id = alsa_numid::OUT_SWITCH_12;
             }
             else if(which_control == 1){
-                control_id = MixSisCtrl::alsa_numid::OUT_SWITCH_34;
+                control_id = alsa_numid::OUT_SWITCH_34;
             }
             else if(which_control == 2){
-                control_id = MixSisCtrl::alsa_numid::OUT_SWITCH_56;
+                control_id = alsa_numid::OUT_SWITCH_56;
             }
             else{
                 fprintf(stderr, "invalid mute set: %d\n how did this happen\n", which_control);
@@ -175,25 +174,25 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         });
         obj->connect(ctrls->out_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
                 [=](int index){
-            MixSisCtrl::alsa_numid control_id;
+            alsa_numid control_id;
             switch(n){
             case 0:
-                control_id = MixSisCtrl::alsa_numid::OUT_1_SRC;
+                control_id = alsa_numid::OUT_1_SRC;
                 break;
             case 1:
-                control_id = MixSisCtrl::alsa_numid::OUT_2_SRC;
+                control_id = alsa_numid::OUT_2_SRC;
                 break;
             case 2:
-                control_id = MixSisCtrl::alsa_numid::OUT_3_SRC;
+                control_id = alsa_numid::OUT_3_SRC;
                 break;
             case 3:
-                control_id = MixSisCtrl::alsa_numid::OUT_4_SRC;
+                control_id = alsa_numid::OUT_4_SRC;
                 break;
             case 4:
-                control_id = MixSisCtrl::alsa_numid::OUT_5_SRC;
+                control_id = alsa_numid::OUT_5_SRC;
                 break;
             case 5:
-                control_id = MixSisCtrl::alsa_numid::OUT_6_SRC;
+                control_id = alsa_numid::OUT_6_SRC;
                 break;
             default:
                 fprintf(stderr, "error: tried to set invalid output src %d\n", n);
@@ -203,25 +202,25 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         });
         obj->connect(ctrls->in_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
                 [=](int index){
-            MixSisCtrl::alsa_numid control_id;
+            alsa_numid control_id;
             switch(n){
             case 0:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_1;
+                control_id = alsa_numid::INPUT_ROUTE_1;
                 break;
             case 1:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_2;
+                control_id = alsa_numid::INPUT_ROUTE_2;
                 break;
             case 2:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_3;
+                control_id = alsa_numid::INPUT_ROUTE_3;
                 break;
             case 3:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_4;
+                control_id = alsa_numid::INPUT_ROUTE_4;
                 break;
             case 4:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_5;
+                control_id = alsa_numid::INPUT_ROUTE_5;
                 break;
             case 5:
-                control_id = MixSisCtrl::alsa_numid::INPUT_ROUTE_6;
+                control_id = alsa_numid::INPUT_ROUTE_6;
                 break;
             default:
                 fprintf(stderr, "couldn't set invalid input route %d\n", n);
@@ -233,19 +232,19 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         obj->connect(ctrls->in_pad[n], &QRadioButton::toggled,
                      [=](){
             bool value = ctrls->in_pad[2*n+1]->isChecked();
-            MixSisCtrl::alsa_numid control_id;
+            alsa_numid control_id;
             switch(n){
             case 0:
-                control_id = MixSisCtrl::alsa_numid::IN_PAD_1;
+                control_id = alsa_numid::IN_PAD_1;
                 break;
             case 1:
-                control_id = MixSisCtrl::alsa_numid::IN_PAD_2;
+                control_id = alsa_numid::IN_PAD_2;
                 break;
             case 2:
-                control_id = MixSisCtrl::alsa_numid::IN_PAD_3;
+                control_id = alsa_numid::IN_PAD_3;
                 break;
             case 3:
-                control_id = MixSisCtrl::alsa_numid::IN_PAD_4;
+                control_id = alsa_numid::IN_PAD_4;
                 break;
             default:
                 fprintf(stderr, "error: tried to toggle in_pad %d\n", n);
@@ -257,12 +256,12 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         obj->connect(ctrls->in_imp[n], &QRadioButton::toggled,
                      [=](){
            bool value = ctrls->in_imp[2*n+1]->isChecked();
-           MixSisCtrl::alsa_numid control_id;
+           alsa_numid control_id;
            if(n == 0){
-               control_id = MixSisCtrl::alsa_numid::IN_IMP_1;
+               control_id = alsa_numid::IN_IMP_1;
            }
            else if(n == 1){
-               control_id = MixSisCtrl::alsa_numid::IN_IMP_2;
+               control_id = alsa_numid::IN_IMP_2;
            }
            else{
                fprintf(stderr, "error: tried to toggle in_imp %d\n", n);
@@ -271,19 +270,19 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
            this->set(control_id, value, 0);
         });
     }
-    int matrix_index = (int) MixSisCtrl::alsa_numid::MATRIX_ROUTE_1;
+    int matrix_index = (int) alsa_numid::MATRIX_ROUTE_1;
     for(n=0;n<18;++n){
         obj->connect(ctrls->mtx_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
                 [=](int index){
-            this->set((MixSisCtrl::alsa_numid)matrix_index, index);
+            this->set((alsa_numid)matrix_index, index);
         });
         matrix_index += 1;
         for(int i=0; i<8; ++i){
             obj->connect(ctrls->mtx_vol[n][i], &QSlider::valueChanged,
             [=](){
                 int volume = ctrls->mtx_vol[n][i]->value();
-                int value = volume_from_dB(volume, (MixSisCtrl::alsa_numid)matrix_index, ctl);
-                this->set((MixSisCtrl::alsa_numid)matrix_index, value);
+                int value = volume_from_dB(volume, (alsa_numid)matrix_index, ctl);
+                this->set((alsa_numid)matrix_index, value);
             });
             matrix_index += 1;
         }
@@ -299,7 +298,7 @@ MixSis::~MixSis(){
 // converts to 6i6-internal volume from slider %
 // this vaguely represents the way an audio taper pot scales volume
 // this also requires the snd_ctl_t to be valid, but this shouldn't be an issue at all since qsismix won't start without alsa connection and exits if alsa connection is lost
-int MixSis::volume_from_dB(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_t *control){
+int MixSis::volume_from_dB(int value, alsa_numid controlID, snd_ctl_t *control){
     snd_ctl_elem_id_t *dBID;
     snd_ctl_elem_id_alloca(&dBID);
     snd_ctl_elem_info_t *dBInfo;
@@ -329,7 +328,7 @@ int MixSis::volume_from_dB(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_
 }
 
 // converts to slider % from 6i6-internal volume
-int MixSis::dB_from_volume(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_t *control){
+int MixSis::dB_from_volume(int value, alsa_numid controlID, snd_ctl_t *control){
     snd_ctl_elem_id_t *dBID;
     snd_ctl_elem_id_alloca(&dBID);
     snd_ctl_elem_info_t *dBInfo;
@@ -356,7 +355,7 @@ int MixSis::dB_from_volume(int value, MixSisCtrl::alsa_numid controlID, snd_ctl_
     }
 }
 
-void MixSis::set(MixSisCtrl::alsa_numid Nid, int val, int idx){
+void MixSis::set(alsa_numid Nid, int val, int idx){
     snd_ctl_elem_id_t *id;
     snd_ctl_elem_id_alloca(&id);
     snd_ctl_elem_info_t *info;

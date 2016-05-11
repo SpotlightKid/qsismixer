@@ -273,16 +273,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mixctrl.mtx_vol[17][6] = ui->slider_mtx_g_18;
     mixctrl.mtx_vol[17][7] = ui->slider_mtx_h_18;
 
-    for(int i=0; i<18; ++i){
-        for(int j=0; j<8; ++j){
-            mixctrl.mtx_vol[i][j]->setTracking(1);
-            mixctrl.mtx_vol[i][j]->setMaximum(128);
-        }
-        if(i>=6) break;
-        mixctrl.vol_out[i]->setTracking(1);
-        if(i>=2) break;
-        mixctrl.vol_master[i]->setTracking(1);
-    }
+
+
     mixer = new MixSis(&mixctrl, device, this);
     watch = new ChangeWatcher(mixer->ctl, this);
     QObject::connect(watch, &ChangeWatcher::changeVal, this, &MainWindow::setVal);
@@ -351,10 +343,10 @@ void MainWindow::createMenu(){
     clearMtxAct = new QAction(tr("Clear All &Matrices"), this);
     connect(clearMtxAct, &QAction::triggered, this, [=](){
         // iterate through the matrix inputs, turning them off, along with muting their volume controls
-       for(MixSisCtrl::alsa_numid i = MixSisCtrl::alsa_numid::MATRIX_ROUTE_1; i <= MixSisCtrl::alsa_numid::MATRIX_ROUTE_18;){
+       for(alsa_numid i = alsa_numid::MATRIX_ROUTE_1; i <= alsa_numid::MATRIX_ROUTE_18;){
            mixer->set(i,0);
-           MixSisCtrl::alsa_numid j;
-           for(j = (MixSisCtrl::alsa_numid)((int)i+1), i = (MixSisCtrl::alsa_numid)((int)i + 9); j < i; j = MixSisCtrl::alsa_numid((int)j + 1) ){
+           alsa_numid j;
+           for(j = (alsa_numid)((int)i+1), i = (alsa_numid)((int)i + 9); j < i; j = alsa_numid((int)j + 1) ){
                mixer->set(j,0);
            }
        }

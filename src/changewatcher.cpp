@@ -57,7 +57,7 @@ void ChangeWatcher::run(){
 
             snd_ctl_elem_info_set_numid(info, numid);
             snd_ctl_elem_info(ctl, info);
-            bool isVolume = MixSisCtrl::numidIsVolume( (MixSisCtrl::alsa_numid) numid );
+            bool isVolume = MixSisCtrl::numidIsVolume( (alsa_numid) numid );
             switch(snd_ctl_elem_info_get_type(info)){
             case SND_CTL_ELEM_TYPE_BOOLEAN:
                     val = snd_ctl_elem_value_get_boolean(value, idx);
@@ -73,7 +73,7 @@ void ChangeWatcher::run(){
 
             //fprintf(stderr, "numid: %d; val:%d; idx:%d\n", numid, val, idx);
             if(isVolume){
-                val = MixSis::dB_from_volume(val, (MixSisCtrl::alsa_numid) numid, ctl);
+                val = MixSis::dB_from_volume(val, (alsa_numid) numid, ctl);
             }
             emit changeVal(numid, val, idx);
         }
