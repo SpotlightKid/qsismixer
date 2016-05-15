@@ -27,7 +27,6 @@ public:
     //void set_vol(alsa_numid, int, int = 0);
     void set_vol_mute(int which, bool);
     long mindB, maxdB;
-
     snd_mixer_t *mixer;
 
 };

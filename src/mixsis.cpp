@@ -98,6 +98,10 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         }
 
     }
+    // set volume link controls intelligently, too
+    for(int i=0; i<3; ++i){
+        ctrls->vol_out_link[i]->setChecked(ctrls->vol_out[2*i]->value() == ctrls->vol_out[2*i+1]->value());
+    }
     // hook up callback lambdas
     obj->connect(ctrls->vol_master[0], &QSlider::valueChanged,
             [=](){
@@ -116,7 +120,8 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         set(alsa_numid::MSTR_SWITCH, ! (checkstate == Qt::Checked), 0);
     });
     int n;
-    // todo: the if statements should perhaps be outside the lambda? works fine this way, though. if it ain't broke.
+    // pass by value lambda statements let the if statements work okay inside the lambda,
+    // maybe would make more sense if they were outside though?
     for(n=0; n<6; ++n){
         obj->connect(ctrls->vol_out[n], &QSlider::valueChanged,
                 [=](){
@@ -273,13 +278,13 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
     int matrix_index = (int) alsa_numid::MATRIX_ROUTE_1;
     for(n=0;n<18;++n){
         obj->connect(ctrls->mtx_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-                [=](int index){
+                     [=](int index){
             this->set((alsa_numid)matrix_index, index);
         });
         matrix_index += 1;
         for(int i=0; i<8; ++i){
             obj->connect(ctrls->mtx_vol[n][i], &QSlider::valueChanged,
-            [=](){
+                         [=](){
                 int volume = ctrls->mtx_vol[n][i]->value();
                 int value = volume_from_dB(volume, (alsa_numid)matrix_index, ctl);
                 this->set((alsa_numid)matrix_index, value);
@@ -288,6 +293,19 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         }
 
 
+    }
+
+    // now, set up the 'clear matrix' buttons
+    // they just set the controls, the controls set the mixer
+    for(n=0;n<18;++n){
+        obj->connect(ctrls->mtx_clear[n], &QPushButton::clicked,
+        [=](){
+            for(int i=0;i<8;++i){
+                ctrls->mtx_vol[n][i]->setValue(0);
+            }
+            ctrls->mtx_src[n]->setCurrentIndex(0);
+        });
+        ctrls->mtx_clear[n]->setText(obj->tr("Clear"));
     }
 }
 

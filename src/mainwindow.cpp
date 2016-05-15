@@ -4,6 +4,7 @@
 #include "changewatcher.h"
 #include "mainwindow.h"
 
+// these indices have the same numerical values as the scarlett's enums
 const char *mixerEnumValues[] = {"Off", "PCM 1", "PCM 2", "PCM 3", "PCM 4", "PCM 5", "PCM 6", "PCM 7", "PCM 8", "PCM 9", "PCM 10", "PCM 11", "PCM 12",
                               "Analog 1", "Analog 2", "Analog 3", "Analog 4", "SPDIF 1", "SPDIF 2", "Mix A", "Mix B", "Mix C", "Mix D", "Mix E", "Mix F", "Mix G", "Mix H"};
 
@@ -46,6 +47,10 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->combo_matrix_in_17->addItem(mixerEnumValues[i]);
         ui->combo_matrix_in_18->addItem(mixerEnumValues[i]);
     }
+
+
+    // link all the widgets from designer window to MixSisCtrl struct refs
+    // TODO: UI should probably be generated in C++, not auto-generated qtcreator script
     mixctrl.vol_master[0] = ui->slider_master_L;
     mixctrl.vol_master[1] = ui->slider_master_R;
     mixctrl.vol_master_mute = ui->check_master_mute_1;
@@ -273,7 +278,28 @@ MainWindow::MainWindow(QWidget *parent) :
     mixctrl.mtx_vol[17][6] = ui->slider_mtx_g_18;
     mixctrl.mtx_vol[17][7] = ui->slider_mtx_h_18;
 
+    mixctrl.mtx_clear[0] = ui->matrix01BtnClear;
+    mixctrl.mtx_clear[1] = ui->matrix02BtnClear;
+    mixctrl.mtx_clear[2] = ui->matrix03BtnClear;
+    mixctrl.mtx_clear[3] = ui->matrix04BtnClear;
+    mixctrl.mtx_clear[4] = ui->matrix05BtnClear;
+    mixctrl.mtx_clear[5] = ui->matrix06BtnClear;
+    mixctrl.mtx_clear[6] = ui->matrix07BtnClear;
+    mixctrl.mtx_clear[7] = ui->matrix08BtnClear;
+    mixctrl.mtx_clear[8] = ui->matrix09BtnClear;
+    mixctrl.mtx_clear[9] = ui->matrix10BtnClear;
+    mixctrl.mtx_clear[10] = ui->matrix11BtnClear;
+    mixctrl.mtx_clear[11] = ui->matrix12BtnClear;
+    mixctrl.mtx_clear[12] = ui->matrix13BtnClear;
+    mixctrl.mtx_clear[13] = ui->matrix14BtnClear;
+    mixctrl.mtx_clear[14] = ui->matrix15BtnClear;
+    mixctrl.mtx_clear[15] = ui->matrix16BtnClear;
+    mixctrl.mtx_clear[16] = ui->matrix17BtnClear;
+    mixctrl.mtx_clear[17] = ui->matrix18BtnClear;
 
+    for(int i=0;i<18;++i){
+        mixctrl.mtx_clear[i]->setText(tr("Clear"));
+    }
 
     mixer = new MixSis(&mixctrl, device, this);
     watch = new ChangeWatcher(mixer->ctl, this);

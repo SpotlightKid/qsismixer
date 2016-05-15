@@ -7,8 +7,7 @@ void version();
 static const char * filename = "cfg.6i6";
 const char* device = "hw:USB";
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     int toSave = 0;
     int toLoad = 0;

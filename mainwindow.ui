@@ -27,9 +27,9 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
-    <widget class="QWidget" name="masterTab">
+    <widget class="QWidget" name="volumeTab">
      <attribute name="title">
       <string>Master</string>
      </attribute>
@@ -336,7 +336,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="inputTab">
      <attribute name="title">
       <string>Input</string>
      </attribute>
@@ -799,7 +799,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="Matrix1_6">
+    <widget class="QWidget" name="matrix01_06Tab">
      <attribute name="title">
       <string>Matrix 1-6</string>
      </attribute>
@@ -809,10 +809,10 @@
         <x>10</x>
         <y>10</y>
         <width>911</width>
-        <height>241</height>
+        <height>281</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_4">
+      <layout class="QGridLayout" name="matrix01_06GridLayout">
        <item row="0" column="1">
         <widget class="Line" name="line_16">
          <property name="orientation">
@@ -821,23 +821,30 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="matrix01GroupBox">
          <property name="title">
           <string>Matrix 01</string>
          </property>
          <widget class="QWidget" name="gridLayoutWidget_10">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>0</x>
             <y>20</y>
             <width>131</width>
-            <height>211</height>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_10">
+          <layout class="QGridLayout" name="matrix01GridLayout" rowstretch="0,0,0,0,0,0,0">
            <property name="spacing">
             <number>0</number>
            </property>
+           <item row="4" column="0" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>E</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_g_1">
              <property name="orientation">
@@ -922,17 +929,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="0" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_8">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>E</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -943,22 +943,42 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_11">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_1"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix01BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_1"/>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0" colspan="4">
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBox_9">
+        <widget class="QGroupBox" name="matrix02GroupBox">
          <property name="title">
           <string>Matrix 02</string>
          </property>
@@ -967,14 +987,28 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_17">
+          <layout class="QGridLayout" name="matrix02GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_g_2">
              <property name="orientation">
@@ -1052,31 +1086,10 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>B</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="0" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_16">
              <property name="text">
               <string>E</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_17">
-             <property name="text">
-              <string>F</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_18">
-             <property name="text">
-              <string>G</string>
              </property>
             </widget>
            </item>
@@ -1087,15 +1100,42 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="combo_matrix_in_2"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix02BtnClear">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="4">
-        <widget class="QGroupBox" name="groupBox_15">
+        <widget class="QGroupBox" name="matrix03GroupBox">
          <property name="title">
           <string>Matrix 03</string>
          </property>
@@ -1104,11 +1144,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_18">
+          <layout class="QGridLayout" name="matrix03GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -1189,6 +1229,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_25">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_23">
              <property name="text">
@@ -1203,10 +1250,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_25">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_27">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -1217,22 +1264,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_27">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_3"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix03BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_3"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="6">
-        <widget class="QGroupBox" name="groupBox_16">
+        <widget class="QGroupBox" name="matrix04GroupBox">
          <property name="title">
           <string>Matrix 04</string>
          </property>
@@ -1241,14 +1301,21 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_19">
+          <layout class="QGridLayout" name="matrix04GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
+           <item row="3" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_f_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_g_4">
              <property name="orientation">
@@ -1319,10 +1386,10 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="slider_mtx_f_4">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_33">
+             <property name="text">
+              <string>F</string>
              </property>
             </widget>
            </item>
@@ -1340,10 +1407,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_33">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_35">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -1354,22 +1421,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_35">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_4"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix04BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_4"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="8">
-        <widget class="QGroupBox" name="groupBox_17">
+        <widget class="QGroupBox" name="matrix05GroupBox">
          <property name="title">
           <string>Matrix 05</string>
          </property>
@@ -1378,11 +1458,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_20">
+          <layout class="QGridLayout" name="matrix05GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -1463,6 +1543,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_41">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_39">
              <property name="text">
@@ -1477,10 +1564,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_41">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_43">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -1491,22 +1578,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_43">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_5"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix05BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_5"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="10">
-        <widget class="QGroupBox" name="groupBox_18">
+        <widget class="QGroupBox" name="matrix06GroupBox">
          <property name="title">
           <string>Matrix 06</string>
          </property>
@@ -1515,11 +1615,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_21">
+          <layout class="QGridLayout" name="matrix06GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -1600,6 +1700,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_49">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_47">
              <property name="text">
@@ -1614,10 +1721,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_49">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_51">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -1628,15 +1735,28 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_51">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_6"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix06BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_6"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -1673,7 +1793,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="matrix7_12">
+    <widget class="QWidget" name="matrix07_12Tab">
      <attribute name="title">
       <string>Matrix 7-12</string>
      </attribute>
@@ -1683,28 +1803,42 @@
         <x>10</x>
         <y>10</y>
         <width>911</width>
-        <height>241</height>
+        <height>281</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_22">
+      <layout class="QGridLayout" name="matrix07_12GridLayout">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_19">
+        <widget class="QGroupBox" name="matrix07GroupBox">
          <property name="title">
           <string>Matrix 07</string>
          </property>
          <widget class="QWidget" name="gridLayoutWidget_23">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>0</x>
             <y>20</y>
             <width>131</width>
-            <height>211</height>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_23">
+          <layout class="QGridLayout" name="matrix07GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_57">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_55">
+             <property name="text">
+              <string>B</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_g_7">
              <property name="orientation">
@@ -1782,31 +1916,10 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_55">
-             <property name="text">
-              <string>B</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="0" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_56">
              <property name="text">
               <string>E</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_57">
-             <property name="text">
-              <string>F</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_58">
-             <property name="text">
-              <string>G</string>
              </property>
             </widget>
            </item>
@@ -1817,15 +1930,42 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_58">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="combo_matrix_in_7"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix07BtnClear">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBox_20">
+        <widget class="QGroupBox" name="matrix08GroupBox">
          <property name="title">
           <string>Matrix 08</string>
          </property>
@@ -1834,11 +1974,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_24">
+          <layout class="QGridLayout" name="matrix08GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -1919,6 +2059,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_65">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_63">
              <property name="text">
@@ -1933,10 +2080,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_65">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_67">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -1947,22 +2094,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_67">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_8"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix08BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_8"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="4">
-        <widget class="QGroupBox" name="groupBox_21">
+        <widget class="QGroupBox" name="matrix09GroupBox">
          <property name="title">
           <string>Matrix 09</string>
          </property>
@@ -1971,23 +2131,30 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_25">
+          <layout class="QGridLayout" name="matrix09GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
-           <item row="3" column="2" alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="slider_mtx_g_9">
+           <item row="3" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_h_9">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
             </widget>
            </item>
-           <item row="3" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QSlider" name="slider_mtx_h_9">
+           <item row="2" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_68">
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QSlider" name="slider_mtx_g_9">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2004,13 +2171,6 @@
             <widget class="QSlider" name="slider_mtx_c_9">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_68">
-             <property name="text">
-              <string>D</string>
              </property>
             </widget>
            </item>
@@ -2056,6 +2216,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_73">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_71">
              <property name="text">
@@ -2070,10 +2237,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_73">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_75">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2084,22 +2251,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_75">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_9"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix09BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_9"/>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="6">
-        <widget class="QGroupBox" name="groupBox_22">
+        <widget class="QGroupBox" name="matrix10GroupBox">
          <property name="title">
           <string>Matrix 10</string>
          </property>
@@ -2108,11 +2288,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_26">
+          <layout class="QGridLayout" name="matrix10GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -2214,13 +2394,6 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="2" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_82">
-             <property name="text">
-              <string>G</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="3" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_83">
              <property name="text">
@@ -2228,15 +2401,42 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_82">
+             <property name="text">
+              <string>G</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="combo_matrix_in_10"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix10BtnClear">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="8">
-        <widget class="QGroupBox" name="groupBox_23">
+        <widget class="QGroupBox" name="matrix11GroupBox">
          <property name="title">
           <string>Matrix 11</string>
          </property>
@@ -2245,14 +2445,21 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_27">
+          <layout class="QGridLayout" name="matrix11GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
+           <item row="2" column="2" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_86">
+             <property name="text">
+              <string>C</string>
+             </property>
+            </widget>
+           </item>
            <item row="3" column="2" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_g_11">
              <property name="orientation">
@@ -2316,17 +2523,17 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="2" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_86">
-             <property name="text">
-              <string>C</string>
-             </property>
-            </widget>
-           </item>
            <item row="3" column="1" alignment="Qt::AlignHCenter">
             <widget class="QSlider" name="slider_mtx_f_11">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_89">
+             <property name="text">
+              <string>F</string>
              </property>
             </widget>
            </item>
@@ -2344,10 +2551,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_89">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_91">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2358,22 +2565,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_91">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_11"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix11BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_11"/>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="10">
-        <widget class="QGroupBox" name="groupBox_24">
+        <widget class="QGroupBox" name="matrix12GroupBox">
          <property name="title">
           <string>Matrix 12</string>
          </property>
@@ -2382,11 +2602,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_28">
+          <layout class="QGridLayout" name="matrix12GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -2467,6 +2687,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_97">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_95">
              <property name="text">
@@ -2481,10 +2708,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_97">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_99">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2495,15 +2722,28 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_99">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_12"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix12BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_12"/>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -2547,7 +2787,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="matrix13_18">
+    <widget class="QWidget" name="matrix13_18Tab">
      <attribute name="title">
       <string>Matrix 13-18</string>
      </attribute>
@@ -2557,25 +2797,28 @@
         <x>10</x>
         <y>10</y>
         <width>911</width>
-        <height>241</height>
+        <height>281</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_29">
+      <layout class="QGridLayout" name="matrix13_18GridLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_25">
+        <widget class="QGroupBox" name="matrix13GroupBox">
          <property name="title">
           <string>Matrix 13</string>
          </property>
          <widget class="QWidget" name="gridLayoutWidget_30">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>0</x>
             <y>20</y>
             <width>131</width>
-            <height>211</height>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_30">
+          <layout class="QGridLayout" name="matrix13GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -2656,6 +2899,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_105">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_103">
              <property name="text">
@@ -2670,10 +2920,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_105">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_107">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2684,22 +2934,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_107">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_13"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix13BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_13"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_18">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QGroupBox" name="groupBox_26">
+        <widget class="QGroupBox" name="matrix14GroupBox">
          <property name="title">
           <string>Matrix 14</string>
          </property>
@@ -2708,11 +2971,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_31">
+          <layout class="QGridLayout" name="matrix14GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -2793,6 +3056,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_113">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_111">
              <property name="text">
@@ -2807,10 +3077,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_113">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_115">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2821,22 +3091,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_115">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_14"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix14BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_14"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_17">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="4">
-        <widget class="QGroupBox" name="groupBox_27">
+        <widget class="QGroupBox" name="matrix15GroupBox">
          <property name="title">
           <string>Matrix 15</string>
          </property>
@@ -2845,11 +3128,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_32">
+          <layout class="QGridLayout" name="matrix15GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -2944,10 +3227,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_121">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_123">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -2958,22 +3241,42 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_123">
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_121">
              <property name="text">
-              <string>H</string>
+              <string>F</string>
              </property>
             </widget>
            </item>
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="combo_matrix_in_15"/>
            </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix15BtnClear">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_16">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="6">
-        <widget class="QGroupBox" name="groupBox_28">
+        <widget class="QGroupBox" name="matrix16GroupBox">
          <property name="title">
           <string>Matrix 16</string>
          </property>
@@ -2982,11 +3285,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_33">
+          <layout class="QGridLayout" name="matrix16GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -3067,6 +3370,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_129">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_127">
              <property name="text">
@@ -3081,10 +3391,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_129">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_131">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -3095,22 +3405,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_131">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_16"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix16BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_16"/>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="8">
-        <widget class="QGroupBox" name="groupBox_29">
+        <widget class="QGroupBox" name="matrix17GroupBox">
          <property name="title">
           <string>Matrix 17</string>
          </property>
@@ -3119,11 +3442,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_34">
+          <layout class="QGridLayout" name="matrix17GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -3204,6 +3527,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_137">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_135">
              <property name="text">
@@ -3218,10 +3548,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_137">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_139">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -3232,22 +3562,35 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_139">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_17"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix17BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_17"/>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="0" column="10">
-        <widget class="QGroupBox" name="groupBox_30">
+        <widget class="QGroupBox" name="matrix18GroupBox">
          <property name="title">
           <string>Matrix 18</string>
          </property>
@@ -3256,11 +3599,11 @@
            <rect>
             <x>0</x>
             <y>20</y>
-            <width>141</width>
-            <height>211</height>
+            <width>131</width>
+            <height>261</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_35">
+          <layout class="QGridLayout" name="matrix18GridLayout">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -3341,6 +3684,13 @@
              </property>
             </widget>
            </item>
+           <item row="4" column="1" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_145">
+             <property name="text">
+              <string>F</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1" alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="label_143">
              <property name="text">
@@ -3355,10 +3705,10 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_145">
+           <item row="4" column="3" alignment="Qt::AlignHCenter">
+            <widget class="QLabel" name="label_147">
              <property name="text">
-              <string>F</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
@@ -3369,15 +3719,28 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="3" alignment="Qt::AlignHCenter">
-            <widget class="QLabel" name="label_147">
+           <item row="0" column="0" colspan="4">
+            <widget class="QComboBox" name="combo_matrix_in_18"/>
+           </item>
+           <item row="6" column="0" colspan="4">
+            <widget class="QPushButton" name="matrix18BtnClear">
              <property name="text">
-              <string>H</string>
+              <string>PushButton</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="combo_matrix_in_18"/>
+           <item row="5" column="0">
+            <spacer name="verticalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>

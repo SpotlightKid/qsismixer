@@ -14,24 +14,24 @@ bool MixSisCtrl::numidIsVolume(alsa_numid test){
     if(test == OUT_VOL_12 ) return 1;
     if(test == OUT_VOL_34) return 1;
     if(test == OUT_VOL_56) return 1;
-    if(test >= MATRIX_A_1 && test <= MATRIX_H_1) return 1;
-    if(test >= MATRIX_A_2 && test <= MATRIX_H_2) return 1;
-    if(test >= MATRIX_A_3 && test <= MATRIX_H_3) return 1;
-    if(test >= MATRIX_A_4 && test <= MATRIX_H_4) return 1;
-    if(test >= MATRIX_A_5 && test <= MATRIX_H_5) return 1;
-    if(test >= MATRIX_A_6 && test <= MATRIX_H_6) return 1;
-    if(test >= MATRIX_A_7 && test <= MATRIX_H_7) return 1;
-    if(test >= MATRIX_A_8 && test <= MATRIX_H_8) return 1;
-    if(test >= MATRIX_A_9 && test <= MATRIX_H_9) return 1;
-    if(test >= MATRIX_A_10 && test <= MATRIX_H_10) return 1;
-    if(test >= MATRIX_A_11 && test <= MATRIX_H_11) return 1;
-    if(test >= MATRIX_A_12 && test <= MATRIX_H_12) return 1;
-    if(test >= MATRIX_A_13 && test <= MATRIX_H_13) return 1;
-    if(test >= MATRIX_A_14 && test <= MATRIX_H_14) return 1;
-    if(test >= MATRIX_A_15 && test <= MATRIX_H_15) return 1;
-    if(test >= MATRIX_A_16 && test <= MATRIX_H_16) return 1;
-    if(test >= MATRIX_A_17 && test <= MATRIX_H_17) return 1;
-    if(test >= MATRIX_A_18 && test <= MATRIX_H_18) return 1;
+    if(test >= MATRIX_1_A && test <= MATRIX_1_H) return 1;
+    if(test >= MATRIX_2_A && test <= MATRIX_2_H) return 1;
+    if(test >= MATRIX_3_A && test <= MATRIX_3_H) return 1;
+    if(test >= MATRIX_4_A && test <= MATRIX_4_H) return 1;
+    if(test >= MATRIX_5_A && test <= MATRIX_5_H) return 1;
+    if(test >= MATRIX_6_A && test <= MATRIX_6_H) return 1;
+    if(test >= MATRIX_7_A && test <= MATRIX_7_H) return 1;
+    if(test >= MATRIX_8_A && test <= MATRIX_8_H) return 1;
+    if(test >= MATRIX_9_A && test <= MATRIX_9_H) return 1;
+    if(test >= MATRIX_10_A && test <= MATRIX_10_H) return 1;
+    if(test >= MATRIX_11_A && test <= MATRIX_11_H) return 1;
+    if(test >= MATRIX_12_A && test <= MATRIX_12_H) return 1;
+    if(test >= MATRIX_13_A && test <= MATRIX_13_H) return 1;
+    if(test >= MATRIX_14_A && test <= MATRIX_14_H) return 1;
+    if(test >= MATRIX_15_A && test <= MATRIX_15_H) return 1;
+    if(test >= MATRIX_16_A && test <= MATRIX_16_H) return 1;
+    if(test >= MATRIX_17_A && test <= MATRIX_17_H) return 1;
+    if(test >= MATRIX_18_A && test <= MATRIX_18_H) return 1;
     return 0;
 }
 
@@ -148,17 +148,18 @@ int MixSisCtrl::load_from(QString &filename){
     return 0;
 }
 
+/// sets the qt control corresponding to alsa_id,idx to a certain value
 void MixSisCtrl::set(int alsa_id, int value, int idx){
     long db;
     int j = 0;
     switch((alsa_numid) alsa_id){
-        case MSTR_SWITCH:
-            vol_master_mute->setChecked(!value);
-            break;
+    case MSTR_SWITCH:
+        vol_master_mute->setChecked(!value);
+        break;
     case MSTR_VOL:
-            db = value;
-            vol_master[0]->setValue(db);
-            vol_master[1]->setValue(db);
+        db = value;
+        vol_master[0]->setValue(db);
+        vol_master[1]->setValue(db);
         break;
     case OUT_SWITCH_56:
         j+=2;
@@ -251,300 +252,300 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
     case MATRIX_ROUTE_1:
         mtx_src[j]->setCurrentIndex(value);
         break;
-    case MATRIX_A_18:
+    case MATRIX_18_A:
         ++j;
-    case MATRIX_A_17:
+    case MATRIX_17_A:
         ++j;
-    case MATRIX_A_16:
+    case MATRIX_16_A:
         ++j;
-    case MATRIX_A_15:
+    case MATRIX_15_A:
         ++j;
-    case MATRIX_A_14:
+    case MATRIX_14_A:
         ++j;
-    case MATRIX_A_13:
+    case MATRIX_13_A:
         ++j;
-    case MATRIX_A_12:
+    case MATRIX_12_A:
         ++j;
-    case MATRIX_A_11:
+    case MATRIX_11_A:
         ++j;
-    case MATRIX_A_10:
+    case MATRIX_10_A:
         ++j;
-    case MATRIX_A_9:
+    case MATRIX_9_A:
         ++j;
-    case MATRIX_A_8:
+    case MATRIX_8_A:
         ++j;
-    case MATRIX_A_7:
+    case MATRIX_7_A:
         ++j;
-    case MATRIX_A_6:
+    case MATRIX_6_A:
         ++j;
-    case MATRIX_A_5:
+    case MATRIX_5_A:
         ++j;
-    case MATRIX_A_4:
+    case MATRIX_4_A:
         ++j;
-    case MATRIX_A_3:
+    case MATRIX_3_A:
         ++j;
-    case MATRIX_A_2:
+    case MATRIX_2_A:
         ++j;
-    case MATRIX_A_1:
+    case MATRIX_1_A:
         mtx_vol[j][0]->setValue(value);
         break;
-    case MATRIX_B_18:
+    case MATRIX_18_B:
         ++j;
-    case MATRIX_B_17:
+    case MATRIX_17_B:
         ++j;
-    case MATRIX_B_16:
+    case MATRIX_16_B:
         ++j;
-    case MATRIX_B_15:
+    case MATRIX_15_B:
         ++j;
-    case MATRIX_B_14:
+    case MATRIX_14_B:
         ++j;
-    case MATRIX_B_13:
+    case MATRIX_13_B:
         ++j;
-    case MATRIX_B_12:
+    case MATRIX_12_B:
         ++j;
-    case MATRIX_B_11:
+    case MATRIX_11_B:
         ++j;
-    case MATRIX_B_10:
+    case MATRIX_10_B:
         ++j;
-    case MATRIX_B_9:
+    case MATRIX_9_B:
         ++j;
-    case MATRIX_B_8:
+    case MATRIX_8_B:
         ++j;
-    case MATRIX_B_7:
+    case MATRIX_7_B:
         ++j;
-    case MATRIX_B_6:
+    case MATRIX_6_B:
         ++j;
-    case MATRIX_B_5:
+    case MATRIX_5_B:
         ++j;
-    case MATRIX_B_4:
+    case MATRIX_4_B:
         ++j;
-    case MATRIX_B_3:
+    case MATRIX_3_B:
         ++j;
-    case MATRIX_B_2:
+    case MATRIX_2_B:
         ++j;
-    case MATRIX_B_1:
+    case MATRIX_1_B:
         mtx_vol[j][1]->setValue(value);
         break;
-    case MATRIX_C_18:
+    case MATRIX_18_C:
         ++j;
-    case MATRIX_C_17:
+    case MATRIX_17_C:
         ++j;
-    case MATRIX_C_16:
+    case MATRIX_16_C:
         ++j;
-    case MATRIX_C_15:
+    case MATRIX_15_C:
         ++j;
-    case MATRIX_C_14:
+    case MATRIX_14_C:
         ++j;
-    case MATRIX_C_13:
+    case MATRIX_13_C:
         ++j;
-    case MATRIX_C_12:
+    case MATRIX_12_C:
         ++j;
-    case MATRIX_C_11:
+    case MATRIX_11_C:
         ++j;
-    case MATRIX_C_10:
+    case MATRIX_10_C:
         ++j;
-    case MATRIX_C_9:
+    case MATRIX_9_C:
         ++j;
-    case MATRIX_C_8:
+    case MATRIX_8_C:
         ++j;
-    case MATRIX_C_7:
+    case MATRIX_7_C:
         ++j;
-    case MATRIX_C_6:
+    case MATRIX_6_C:
         ++j;
-    case MATRIX_C_5:
+    case MATRIX_5_C:
         ++j;
-    case MATRIX_C_4:
+    case MATRIX_4_C:
         ++j;
-    case MATRIX_C_3:
+    case MATRIX_3_C:
         ++j;
-    case MATRIX_C_2:
+    case MATRIX_2_C:
         ++j;
-    case MATRIX_C_1:
+    case MATRIX_1_C:
         mtx_vol[j][2]->setValue(value);
         break;
-    case MATRIX_D_18:
+    case MATRIX_18_D:
         ++j;
-    case MATRIX_D_17:
+    case MATRIX_17_D:
         ++j;
-    case MATRIX_D_16:
+    case MATRIX_16_D:
         ++j;
-    case MATRIX_D_15:
+    case MATRIX_15_D:
         ++j;
-    case MATRIX_D_14:
+    case MATRIX_14_D:
         ++j;
-    case MATRIX_D_13:
+    case MATRIX_13_D:
         ++j;
-    case MATRIX_D_12:
+    case MATRIX_12_D:
         ++j;
-    case MATRIX_D_11:
+    case MATRIX_11_D:
         ++j;
-    case MATRIX_D_10:
+    case MATRIX_10_D:
         ++j;
-    case MATRIX_D_9:
+    case MATRIX_9_D:
         ++j;
-    case MATRIX_D_8:
+    case MATRIX_8_D:
         ++j;
-    case MATRIX_D_7:
+    case MATRIX_7_D:
         ++j;
-    case MATRIX_D_6:
+    case MATRIX_6_D:
         ++j;
-    case MATRIX_D_5:
+    case MATRIX_5_D:
         ++j;
-    case MATRIX_D_4:
+    case MATRIX_4_D:
         ++j;
-    case MATRIX_D_3:
+    case MATRIX_3_D:
         ++j;
-    case MATRIX_D_2:
+    case MATRIX_2_D:
         ++j;
-    case MATRIX_D_1:
+    case MATRIX_1_D:
         mtx_vol[j][3]->setValue(value);
         break;
-    case MATRIX_E_18:
+    case MATRIX_18_E:
         ++j;
-    case MATRIX_E_17:
+    case MATRIX_17_E:
         ++j;
-    case MATRIX_E_16:
+    case MATRIX_16_E:
         ++j;
-    case MATRIX_E_15:
+    case MATRIX_15_E:
         ++j;
-    case MATRIX_E_14:
+    case MATRIX_14_E:
         ++j;
-    case MATRIX_E_13:
+    case MATRIX_13_E:
         ++j;
-    case MATRIX_E_12:
+    case MATRIX_12_E:
         ++j;
-    case MATRIX_E_11:
+    case MATRIX_11_E:
         ++j;
-    case MATRIX_E_10:
+    case MATRIX_10_E:
         ++j;
-    case MATRIX_E_9:
+    case MATRIX_9_E:
         ++j;
-    case MATRIX_E_8:
+    case MATRIX_8_E:
         ++j;
-    case MATRIX_E_7:
+    case MATRIX_7_E:
         ++j;
-    case MATRIX_E_6:
+    case MATRIX_6_E:
         ++j;
-    case MATRIX_E_5:
+    case MATRIX_5_E:
         ++j;
-    case MATRIX_E_4:
+    case MATRIX_4_E:
         ++j;
-    case MATRIX_E_3:
+    case MATRIX_3_E:
         ++j;
-    case MATRIX_E_2:
+    case MATRIX_2_E:
         ++j;
-    case MATRIX_E_1:
+    case MATRIX_1_E:
         mtx_vol[j][4]->setValue(value);
         break;
-    case MATRIX_F_18:
+    case MATRIX_18_F:
         ++j;
-    case MATRIX_F_17:
+    case MATRIX_17_F:
         ++j;
-    case MATRIX_F_16:
+    case MATRIX_16_F:
         ++j;
-    case MATRIX_F_15:
+    case MATRIX_15_F:
         ++j;
-    case MATRIX_F_14:
+    case MATRIX_14_F:
         ++j;
-    case MATRIX_F_13:
+    case MATRIX_13_F:
         ++j;
-    case MATRIX_F_12:
+    case MATRIX_12_F:
         ++j;
-    case MATRIX_F_11:
+    case MATRIX_11_F:
         ++j;
-    case MATRIX_F_10:
+    case MATRIX_10_F:
         ++j;
-    case MATRIX_F_9:
+    case MATRIX_9_F:
         ++j;
-    case MATRIX_F_8:
+    case MATRIX_8_F:
         ++j;
-    case MATRIX_F_7:
+    case MATRIX_7_F:
         ++j;
-    case MATRIX_F_6:
+    case MATRIX_6_F:
         ++j;
-    case MATRIX_F_5:
+    case MATRIX_5_F:
         ++j;
-    case MATRIX_F_4:
+    case MATRIX_4_F:
         ++j;
-    case MATRIX_F_3:
+    case MATRIX_3_F:
         ++j;
-    case MATRIX_F_2:
+    case MATRIX_2_F:
         ++j;
-    case MATRIX_F_1:
+    case MATRIX_1_F:
         mtx_vol[j][5]->setValue(value);
         break;
-    case MATRIX_G_18:
+    case MATRIX_18_G:
         ++j;
-    case MATRIX_G_17:
+    case MATRIX_17_G:
         ++j;
-    case MATRIX_G_16:
+    case MATRIX_16_G:
         ++j;
-    case MATRIX_G_15:
+    case MATRIX_15_G:
         ++j;
-    case MATRIX_G_14:
+    case MATRIX_14_G:
         ++j;
-    case MATRIX_G_13:
+    case MATRIX_13_G:
         ++j;
-    case MATRIX_G_12:
+    case MATRIX_12_G:
         ++j;
-    case MATRIX_G_11:
+    case MATRIX_11_G:
         ++j;
-    case MATRIX_G_10:
+    case MATRIX_10_G:
         ++j;
-    case MATRIX_G_9:
+    case MATRIX_9_G:
         ++j;
-    case MATRIX_G_8:
+    case MATRIX_8_G:
         ++j;
-    case MATRIX_G_7:
+    case MATRIX_7_G:
         ++j;
-    case MATRIX_G_6:
+    case MATRIX_6_G:
         ++j;
-    case MATRIX_G_5:
+    case MATRIX_5_G:
         ++j;
-    case MATRIX_G_4:
+    case MATRIX_4_G:
         ++j;
-    case MATRIX_G_3:
+    case MATRIX_3_G:
         ++j;
-    case MATRIX_G_2:
+    case MATRIX_2_G:
         ++j;
-    case MATRIX_G_1:
+    case MATRIX_1_G:
         mtx_vol[j][6]->setValue(value);
         break;
-    case MATRIX_H_18:
+    case MATRIX_18_H:
         ++j;
-    case MATRIX_H_17:
+    case MATRIX_17_H:
         ++j;
-    case MATRIX_H_16:
+    case MATRIX_16_H:
         ++j;
-    case MATRIX_H_15:
+    case MATRIX_15_H:
         ++j;
-    case MATRIX_H_14:
+    case MATRIX_14_H:
         ++j;
-    case MATRIX_H_13:
+    case MATRIX_13_H:
         ++j;
-    case MATRIX_H_12:
+    case MATRIX_12_H:
         ++j;
-    case MATRIX_H_11:
+    case MATRIX_11_H:
         ++j;
-    case MATRIX_H_10:
+    case MATRIX_10_H:
         ++j;
-    case MATRIX_H_9:
+    case MATRIX_9_H:
         ++j;
-    case MATRIX_H_8:
+    case MATRIX_8_H:
         ++j;
-    case MATRIX_H_7:
+    case MATRIX_7_H:
         ++j;
-    case MATRIX_H_6:
+    case MATRIX_6_H:
         ++j;
-    case MATRIX_H_5:
+    case MATRIX_5_H:
         ++j;
-    case MATRIX_H_4:
+    case MATRIX_4_H:
         ++j;
-    case MATRIX_H_3:
+    case MATRIX_3_H:
         ++j;
-    case MATRIX_H_2:
+    case MATRIX_2_H:
         ++j;
-    case MATRIX_H_1:
+    case MATRIX_1_H:
         mtx_vol[j][7]->setValue(value);
         break;
     default:
