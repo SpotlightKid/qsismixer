@@ -1,13 +1,12 @@
 #ifndef MIXSISCTRL
 #define MIXSISCTRL
 
-#define DEBUG
-
 #include <QSlider>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QDataStream>
 
 enum alsa_numid {
     MSTR_SWITCH = 4, MSTR_VOL, OUT_SWITCH_12, OUT_VOL_12, OUT_1_SRC, OUT_2_SRC,
@@ -66,6 +65,7 @@ struct MixSisCtrl
 
     /// sets the qt control corresponding to alsa_id,idx to a certain value
     void set(int alsa_id, int value, int idx = 0);
+
 };
 
 #endif // MIXSISCTRL

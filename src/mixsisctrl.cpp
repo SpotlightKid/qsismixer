@@ -1,4 +1,3 @@
-#include "qdatastream.h"
 #include "qfile.h"
 #include "qtextstream.h"
 #include <QDir>
@@ -69,15 +68,16 @@ int MixSisCtrl::save_to(QString &filename){
             cfg << (qint32) mtx_vol[i][j]->value();
         }
     }
+    /// best case scenario would be to instead define a QExceptionDataStream : QDataStream that throws exceptions like a modern thing
+    /// or just use std::fstream and flag it to throw exceptions instead
+    if(cfg.status() != QDataStream::Ok){
+        fprintf(stderr, "File output error! Probably corrupted data at %s.\n", filename.toLocal8Bit().constData());
+        file.close();
+        return -1;
+    }
     file.close();
     return 0;
 }
-/*
-int MixSisCtrl::load_from_dialog(QWidget *context){
-    QString directory = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-    QString filen = QFileDialog::getOpenFileName(context, context->tr("Load Configuration From..."), directory.append("/qsismix.6i6"), context->tr("Sixisix Configs (*.6i6)"));
-    return load_from(filen);
-}*/
 
 int MixSisCtrl::load_from(QString &filename){
     QFile file(filename);
@@ -135,6 +135,13 @@ int MixSisCtrl::load_from(QString &filename){
             cfg >> tmp;
             mtx_vol[i][j]->setValue(tmp);
         }
+    }
+    // unfortunately, QT *won't* throw an exception on trying to read past eof (as far as I can tell)
+    if(cfg.status() != QDataStream::Ok){
+        fprintf(stderr, "File input error! Probably corrupted data at %s.\n"
+                "It is also very likely that qsis settings are corrupted.\n", filename.toLocal8Bit().constData());
+        file.close();
+        return -1;
     }
     file.close();
     return 0;

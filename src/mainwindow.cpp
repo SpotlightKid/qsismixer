@@ -6,14 +6,17 @@
 #include "changewatcher.h"
 #include "mainwindow.h"
 
-// these indices have the same numerical values as the scarlett's enums
+// these indices have the same numerical values as the scarlett's native enums
 const char *mixerEnumValues[] = {"Off", "PCM 1", "PCM 2", "PCM 3", "PCM 4", "PCM 5", "PCM 6", "PCM 7", "PCM 8", "PCM 9", "PCM 10", "PCM 11", "PCM 12",
                               "Analog 1", "Analog 2", "Analog 3", "Analog 4", "SPDIF 1", "SPDIF 2", "Mix A", "Mix B", "Mix C", "Mix D", "Mix E", "Mix F", "Mix G", "Mix H"};
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow){
+    // run QT setup
     ui->setupUi(this);
+
+    // add enum values to combo menus
     for(int i=0; i<27; ++i){
         ui->combo_out_src_1->addItem(mixerEnumValues[i]);
         ui->combo_out_src_2->addItem(mixerEnumValues[i]);
@@ -303,7 +306,10 @@ MainWindow::MainWindow(QWidget *parent) :
         mixctrl.mtx_clear[i]->setText(tr("Clear"));
     }
 
+    // now run MixSis(), which handles internal alsa stuff
     mixer = new MixSis(&mixctrl, device, this);
+
+    // ChangeWatcher handles alsa callbacks from another thread in case another program changes the values
     watch = new ChangeWatcher(mixer->ctl, this);
     QObject::connect(watch, &ChangeWatcher::changeVal, this, &MainWindow::setVal);
     QObject::connect(this, &MainWindow::maskVol, watch, &ChangeWatcher::maskVol);
@@ -335,6 +341,7 @@ bool MainWindow::event(QEvent *ev){
     return QWidget::event(ev);
 }
 
+// for flagging load/saves from the command line
 int MainWindow::loadFrom(const char* filename){
     QString filen(filename);
     return mixctrl.load_from(filen);

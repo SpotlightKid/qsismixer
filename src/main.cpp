@@ -58,8 +58,8 @@ int main(int argc, char *argv[]){
 }
 
 void help(){
-    fprintf(stdout,"%s\n%s\n\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n",
-            "Qt Sixisix Mixer",
+    version();
+    fprintf(stdout,"%s\n\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n",
             "Usage: qsismix [ options ]",
             "-D (device)","selects alsa device handle (default hw:USB)",
             "-d (filename)","saves (dumps) the current configuration to file given (default cfg.6i6) and then exits",
@@ -70,6 +70,6 @@ void help(){
 
 void version(){
     fprintf(stdout, "Qt Sixisix Mixer\n"
-            "version 0.17\n"
-            "May 08, 2016\n");
+            "version 0.19\n"
+            "May 22, 2016\n");
 }
