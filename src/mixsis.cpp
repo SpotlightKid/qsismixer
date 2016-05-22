@@ -2,7 +2,7 @@
 #include <QtCore>
 #include <poll.h>
 #include "mixsis.h"
-
+#include "mainwindow.h"
 MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(ctrls), parent(obj)
 {
     int err;
@@ -17,7 +17,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         exit(err);
     }
     // boot up alsa interface
-    ctl = snd_hctl_ctl(hctl);
+    snd_ctl_open(&ctl, device, 0);
 
     snd_ctl_elem_id_t *id;
     snd_ctl_elem_id_alloca(&id);
@@ -51,11 +51,11 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             ctrls->mtx_vol[k][l]->setMaximum((int)maxVol);
             ctrls->mtx_vol[k][l]->setTracking(trackingp);
         }
-        if(k>=6) continue;
+        if(k>=6) continue; // only 6 vol_out[k]
         ctrls->vol_out[k]->setMinimum((int)minVol);
         ctrls->vol_out[k]->setMaximum((int)maxVol);
         ctrls->vol_out[k]->setTracking(trackingp);
-        if(k>=2) continue;
+        if(k>=2) continue; // only 2 vol_master[k]
         ctrls->vol_master[k]->setMinimum((int)minVol);
         ctrls->vol_master[k]->setMaximum((int)maxVol);
         ctrls->vol_master[k]->setTracking(trackingp);
@@ -106,23 +106,24 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
     obj->connect(ctrls->vol_master[0], &QSlider::valueChanged,
             [=](){
         int sixiVol = volume_from_dB(ctrls->vol_master[0]->value(),alsa_numid::MSTR_VOL, ctl);
-        set(alsa_numid::MSTR_VOL, sixiVol);
+        this->set(alsa_numid::MSTR_VOL, sixiVol);
         ctrls->vol_master[1]->setValue(ctrls->vol_master[0]->value());
     });
     obj->connect(ctrls->vol_master[1], &QSlider::valueChanged,
             [=](){
         int sixiVol = volume_from_dB(ctrls->vol_master[1]->value(),alsa_numid::MSTR_VOL, ctl);
-        set(alsa_numid::MSTR_VOL, sixiVol);
+        this->set(alsa_numid::MSTR_VOL, sixiVol);
         ctrls->vol_master[0]->setValue(ctrls->vol_master[1]->value());
     });
     obj->connect(ctrls->vol_master_mute, &QCheckBox::stateChanged,
             [=](int checkstate){
-        set(alsa_numid::MSTR_SWITCH, ! (checkstate == Qt::Checked), 0);
+        this->set(alsa_numid::MSTR_SWITCH, !(checkstate == Qt::Checked), 0);
     });
     int n;
     // pass by value lambda statements let the if statements work okay inside the lambda,
-    // maybe would make more sense if they were outside though?
+    // maybe would make more sense if they were outside though? (if it ain't broke)
     for(n=0; n<6; ++n){
+        // volume out controls 1-6
         obj->connect(ctrls->vol_out[n], &QSlider::valueChanged,
                 [=](){
             int volume = ctrls->vol_out[n]->value();
@@ -130,7 +131,9 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             int other_idx = (n&1) ? n-1 : n+1; // if idx = 1, other = 0,etc
             if(ctrls->vol_out_link[which_control]->isChecked()){
                 if(ctrls->vol_out[other_idx]->value() != volume){
+                    bool old = ctrls->vol_out[n]->blockSignals(true);
                     ctrls->vol_out[other_idx]->setValue(volume);
+                    ctrls->vol_out[n]->blockSignals(old);
                 }
             }
             alsa_numid control_id;
@@ -147,8 +150,21 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                 fprintf(stderr, "invalid volume out set: %d\n how did this happen\n", which_control);
                 return;
             }
+#ifdef DEBUG
+            fprintf(stderr, "volume ctrl %d\n",n);
+#endif
             int value = volume_from_dB(volume, control_id, ctl);
             this->set(control_id, value, n&1);
+
+        });
+        /// these next two event handlers stop changes in alsa from feeding back with changes in qsismix (by blocking them until slider is released)
+        obj->connect(ctrls->vol_out[n], &QSlider::sliderPressed,
+                     [=](){
+            ((MainWindow*)parent)->setChangeWatcherMask(n/2, true);
+        });
+        obj->connect(ctrls->vol_out[n], &QSlider::sliderReleased,
+                     [=](){
+            ((MainWindow*)parent)->setChangeWatcherMask(n/2, false);
 
         });
         obj->connect(ctrls->vol_out_mute[n], &QCheckBox::stateChanged,
@@ -175,7 +191,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                 fprintf(stderr, "invalid mute set: %d\n how did this happen\n", which_control);
                 return;
             }
-            this->set(control_id, ! value, n&1);
+            this->set(control_id, !value, n&1);
         });
         obj->connect(ctrls->out_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
                 [=](int index){
@@ -296,7 +312,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
     }
 
     // now, set up the 'clear matrix' buttons
-    // they just set the controls, the controls set the mixer
+    // they just set the controls; the controls will set the mixer itself
     for(n=0;n<18;++n){
         obj->connect(ctrls->mtx_clear[n], &QPushButton::clicked,
         [=](){
@@ -315,60 +331,62 @@ MixSis::~MixSis(){
 
 // converts to 6i6-internal volume from slider %
 // this vaguely represents the way an audio taper pot scales volume
-// this also requires the snd_ctl_t to be valid, but this shouldn't be an issue at all since qsismix won't start without alsa connection and exits if alsa connection is lost
 int MixSis::volume_from_dB(int value, alsa_numid controlID, snd_ctl_t *control){
-    snd_ctl_elem_id_t *dBID;
-    snd_ctl_elem_id_alloca(&dBID);
-    snd_ctl_elem_info_t *dBInfo;
-    snd_ctl_elem_info_alloca(&dBInfo);
-    snd_ctl_elem_id_set_numid(dBID, controlID);
-    snd_ctl_elem_info_set_id(dBInfo, dBID);
-    snd_ctl_elem_info(control, dBInfo);
-    snd_ctl_elem_info_get_id(dBInfo, dBID);
+    snd_ctl_elem_id_t *id;
+    snd_ctl_elem_id_alloca(&id);
+
+    get_alsa_id(control, id, controlID);
+
     long mindB;
-    snd_ctl_convert_to_dB(control, dBID, 0, &mindB);
+    snd_ctl_convert_to_dB(control, id, 0, &mindB);
     // algorithm: 0<x<=20 -> mindb<db<=-40, 20<x -> -40<db<=0
     if(value == 0) return 0;
     else if(value <= 20){
         long db = value * (-4000. - mindB)/20. + mindB;
         long volume;
-        snd_ctl_convert_from_dB(control, dBID, db, &volume, 0);
-        //fprintf(stderr, "got six volume %ld from slider %d\n", volume, value);
+        snd_ctl_convert_from_dB(control, id, db, &volume, 0);
+#ifdef DEBUG
+        fprintf(stderr, "#1 got six volume %ld from slider %d\n", volume, value);
+#endif
         return volume;
     }
     else{
         long db = (value-20) * 4000./80. + -4000.;
         long volume;
-        snd_ctl_convert_from_dB(control, dBID, db, &volume, 0);
-        //fprintf(stderr, "got six volume %ld from slider %d\n", volume, value);
+        snd_ctl_convert_from_dB(control, id, db, &volume, 0);
+#ifdef DEBUG
+        fprintf(stderr, "#2 got six volume %ld from slider %d\n", volume, value);
+#endif
         return volume;
     }
 }
 
 // converts to slider % from 6i6-internal volume
+// this isn't 1:1 for some reason and causes problems.
 int MixSis::dB_from_volume(int value, alsa_numid controlID, snd_ctl_t *control){
-    snd_ctl_elem_id_t *dBID;
-    snd_ctl_elem_id_alloca(&dBID);
-    snd_ctl_elem_info_t *dBInfo;
-    snd_ctl_elem_info_alloca(&dBInfo);
-    snd_ctl_elem_id_set_numid(dBID, controlID);
-    snd_ctl_elem_info_set_id(dBInfo, dBID);
-    snd_ctl_elem_info(control, dBInfo);
-    snd_ctl_elem_info_get_id(dBInfo, dBID);
-    // algorithm: mindB<dB<-40 -> 0<x<20, -40<dB<0+, 20<x<=100
+    snd_ctl_elem_id_t *id;
+    snd_ctl_elem_id_alloca(&id);
+
+    get_alsa_id(control, id, controlID);
+
+    // algorithm: mindB<dB<-40 -> 0<x<20, -40<dB<0+ -> 20<x<=100
     long mindB;
-    snd_ctl_convert_to_dB(control, dBID, 0, &mindB);
+    snd_ctl_convert_to_dB(control, id, 0, &mindB);
     long dB;
-    snd_ctl_convert_to_dB(control, dBID, value, &dB);
+    snd_ctl_convert_to_dB(control, id, value, &dB);
     if(dB<-4000){
         int slider_vol = (dB - mindB) * 20./(-4000. - mindB);
-        //fprintf(stderr, "#1: got slider %d from six vol %d; db=%ld\n", slider_vol, value, dB);
+#ifdef DEBUG
+        fprintf(stderr, "#1: got slider %d from six vol %d; db=%ld\n", slider_vol, value, dB);
+#endif
         return slider_vol;
     }
     else{
         int slider_vol = (dB + 4000.) * 80./4000. + 20;
         if(slider_vol > 100) slider_vol = 100;
-        //fprintf(stderr, "#2: got slider %d from six vol %d\n", slider_vol, value);
+#ifdef DEBUG
+        fprintf(stderr, "#2: got slider %d from six vol %d\n", slider_vol, value);
+#endif
         return slider_vol;
     }
 }
@@ -378,17 +396,16 @@ void MixSis::set(alsa_numid Nid, int val, int idx){
     snd_ctl_elem_id_alloca(&id);
     snd_ctl_elem_info_t *info;
     snd_ctl_elem_info_alloca(&info);
-    snd_ctl_elem_value_t *value;
-    snd_ctl_elem_value_alloca(&value);
 
+    get_alsa_id(ctl, id, Nid);
     snd_ctl_elem_id_set_numid(id, Nid);
     snd_ctl_elem_info_set_id(info, id);
     snd_ctl_elem_info(ctl, info);
-    snd_ctl_elem_info_get_id(info,id);
+    snd_ctl_elem_value_t *value;
+    snd_ctl_elem_value_alloca(&value);
 
-    snd_hctl_elem_t *helem = snd_hctl_find_elem(hctl,id);
-    snd_hctl_elem_read(helem,value);
-    snd_hctl_elem_info(helem,info);
+    snd_ctl_elem_value_set_id(value, id);
+    snd_ctl_elem_read(ctl, value);
     snd_ctl_elem_type_t type = snd_ctl_elem_info_get_type(info);
     if(type == SND_CTL_ELEM_TYPE_BOOLEAN){
         snd_ctl_elem_value_set_boolean(value,idx, val);
@@ -400,8 +417,21 @@ void MixSis::set(alsa_numid Nid, int val, int idx){
         snd_ctl_elem_value_set_enumerated(value,idx,val);
     }
     else{
-        fprintf(stderr,"something has gone wrong with numid %d in MixSis::set\n",Nid);
+#ifdef DEBUG
+        fprintf(stderr,"MixSis::set: wrong type %d numid %d \n",type, Nid);
+#endif
     }
-    snd_hctl_elem_write(helem,value);
+    snd_ctl_elem_write(ctl, value);
     return;
+}
+
+// gets valid snd_id_t corresponding to alsa_numid
+// before calling: id must be allocated, and this->ctl must be open (should be open during lifetime of MixSis)
+void MixSis::get_alsa_id(snd_ctl_t *ctl, snd_ctl_elem_id_t*& id, alsa_numid numid){
+    snd_ctl_elem_info_t *info;
+    snd_ctl_elem_info_alloca(&info);
+    snd_ctl_elem_id_set_numid(id, numid);
+    snd_ctl_elem_info_set_id(info, id);
+    snd_ctl_elem_info(ctl, info);
+    snd_ctl_elem_info_get_id(info, id);
 }

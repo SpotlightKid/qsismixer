@@ -10,9 +10,17 @@ public:
     ChangeWatcher(snd_ctl_t *ctl, QObject *parent);
     void run();
     snd_ctl_t *ctl;
-    void signalChange(int numid, int val, int idx);
+
+    public slots:
+
+    void maskVol(int num, bool mask);
+
 signals:
     void changeVal(int numid, int val, int idx);
+
+private:
+    bool isVolBlocked[3];
+
 };
 
 #endif // CHANGEWATCHER_H

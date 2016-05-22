@@ -1,45 +1,36 @@
 #include "qdatastream.h"
 #include "qfile.h"
 #include "qtextstream.h"
-#include <QStandardPaths>
 #include <QDir>
-#include "qfiledialog.h"
 #include "qobject.h"
 #include "mixsisctrl.h"
 
 const char *magicn = "QSIS";
 
 bool MixSisCtrl::numidIsVolume(alsa_numid test){
-    if(test == MSTR_VOL) return 1;
-    if(test == OUT_VOL_12 ) return 1;
-    if(test == OUT_VOL_34) return 1;
-    if(test == OUT_VOL_56) return 1;
-    if(test >= MATRIX_1_A && test <= MATRIX_1_H) return 1;
-    if(test >= MATRIX_2_A && test <= MATRIX_2_H) return 1;
-    if(test >= MATRIX_3_A && test <= MATRIX_3_H) return 1;
-    if(test >= MATRIX_4_A && test <= MATRIX_4_H) return 1;
-    if(test >= MATRIX_5_A && test <= MATRIX_5_H) return 1;
-    if(test >= MATRIX_6_A && test <= MATRIX_6_H) return 1;
-    if(test >= MATRIX_7_A && test <= MATRIX_7_H) return 1;
-    if(test >= MATRIX_8_A && test <= MATRIX_8_H) return 1;
-    if(test >= MATRIX_9_A && test <= MATRIX_9_H) return 1;
-    if(test >= MATRIX_10_A && test <= MATRIX_10_H) return 1;
-    if(test >= MATRIX_11_A && test <= MATRIX_11_H) return 1;
-    if(test >= MATRIX_12_A && test <= MATRIX_12_H) return 1;
-    if(test >= MATRIX_13_A && test <= MATRIX_13_H) return 1;
-    if(test >= MATRIX_14_A && test <= MATRIX_14_H) return 1;
-    if(test >= MATRIX_15_A && test <= MATRIX_15_H) return 1;
-    if(test >= MATRIX_16_A && test <= MATRIX_16_H) return 1;
-    if(test >= MATRIX_17_A && test <= MATRIX_17_H) return 1;
-    if(test >= MATRIX_18_A && test <= MATRIX_18_H) return 1;
-    return 0;
-}
-
-int MixSisCtrl::save_to_dialog(QWidget *context){
-    QString directory = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-    QString filen = QFileDialog::getSaveFileName(context, context->tr("Save Configuration As..."), directory.append(context->tr("/qsismix.6i6")), context->tr("Sixisix Configs (*.6i6)"));
-    //QString filen = QString("qsismix.cfg");
-    return save_to(filen);
+    if(test == MSTR_VOL) return true;
+    if(test == OUT_VOL_12 ) return true;
+    if(test == OUT_VOL_34) return true;
+    if(test == OUT_VOL_56) return true;
+    if(test >= MATRIX_1_A && test <= MATRIX_1_H) return true;
+    if(test >= MATRIX_2_A && test <= MATRIX_2_H) return true;
+    if(test >= MATRIX_3_A && test <= MATRIX_3_H) return true;
+    if(test >= MATRIX_4_A && test <= MATRIX_4_H) return true;
+    if(test >= MATRIX_5_A && test <= MATRIX_5_H) return true;
+    if(test >= MATRIX_6_A && test <= MATRIX_6_H) return true;
+    if(test >= MATRIX_7_A && test <= MATRIX_7_H) return true;
+    if(test >= MATRIX_8_A && test <= MATRIX_8_H) return true;
+    if(test >= MATRIX_9_A && test <= MATRIX_9_H) return true;
+    if(test >= MATRIX_10_A && test <= MATRIX_10_H) return true;
+    if(test >= MATRIX_11_A && test <= MATRIX_11_H) return true;
+    if(test >= MATRIX_12_A && test <= MATRIX_12_H) return true;
+    if(test >= MATRIX_13_A && test <= MATRIX_13_H) return true;
+    if(test >= MATRIX_14_A && test <= MATRIX_14_H) return true;
+    if(test >= MATRIX_15_A && test <= MATRIX_15_H) return true;
+    if(test >= MATRIX_16_A && test <= MATRIX_16_H) return true;
+    if(test >= MATRIX_17_A && test <= MATRIX_17_H) return true;
+    if(test >= MATRIX_18_A && test <= MATRIX_18_H) return true;
+    return false;
 }
 
 int MixSisCtrl::save_to(QString &filename){
@@ -81,12 +72,12 @@ int MixSisCtrl::save_to(QString &filename){
     file.close();
     return 0;
 }
-
+/*
 int MixSisCtrl::load_from_dialog(QWidget *context){
     QString directory = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
     QString filen = QFileDialog::getOpenFileName(context, context->tr("Load Configuration From..."), directory.append("/qsismix.6i6"), context->tr("Sixisix Configs (*.6i6)"));
     return load_from(filen);
-}
+}*/
 
 int MixSisCtrl::load_from(QString &filename){
     QFile file(filename);
@@ -107,6 +98,7 @@ int MixSisCtrl::load_from(QString &filename){
             return -1;
         }
     }
+    // here simply setting the controls will work, since they are already connected to alsa in MixSis
     qint32 tmp;
     for(int i=0; i<2; ++i){
         cfg >> tmp;

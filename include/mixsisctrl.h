@@ -1,6 +1,8 @@
 #ifndef MIXSISCTRL
 #define MIXSISCTRL
 
+#define DEBUG
+
 #include <QSlider>
 #include <QCheckBox>
 #include <QComboBox>
@@ -52,8 +54,9 @@ struct MixSisCtrl
     QSlider *mtx_vol[18][8];
     QPushButton *mtx_clear[18];
 
-    int save_to_dialog(QWidget *context);
-    int load_from_dialog(QWidget *context);
+
+ //   int save_to_dialog(QWidget *context);
+ //   int load_from_dialog(QWidget *context);
 
     /// gets control values from file
     int load_from(QString &filename);
