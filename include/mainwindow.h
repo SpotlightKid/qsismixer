@@ -25,7 +25,7 @@ public:
     int loadFrom(const char* filename);
     int saveTo(const char* filename);
     bool event(QEvent *ev);
-    void setChangeWatcherMask(int n, bool mask);
+    void setChangeWatcherMask(int n, int mask);
 
 public slots:
     void setVal(int alsa_id, int value, int idx = 0);

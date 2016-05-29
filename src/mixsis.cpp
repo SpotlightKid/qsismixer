@@ -107,13 +107,17 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             [=](){
         int sixiVol = volume_from_dB(ctrls->vol_master[0]->value(),alsa_numid::MSTR_VOL, ctl);
         this->set(alsa_numid::MSTR_VOL, sixiVol);
+        bool blocked = ctrls->vol_master[0]->blockSignals(true);
         ctrls->vol_master[1]->setValue(ctrls->vol_master[0]->value());
+        ctrls->vol_master[1]->blockSignals(blocked);
     });
     obj->connect(ctrls->vol_master[1], &QSlider::valueChanged,
             [=](){
         int sixiVol = volume_from_dB(ctrls->vol_master[1]->value(),alsa_numid::MSTR_VOL, ctl);
         this->set(alsa_numid::MSTR_VOL, sixiVol);
+        bool blocked = ctrls->vol_master[1]->blockSignals(true);
         ctrls->vol_master[0]->setValue(ctrls->vol_master[1]->value());
+        ctrls->vol_master[1]->blockSignals(blocked);
     });
     obj->connect(ctrls->vol_master_mute, &QCheckBox::stateChanged,
             [=](int checkstate){
@@ -160,11 +164,11 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         /// these next two event handlers stop changes in alsa from feeding back with changes in qsismix (by blocking them until slider is released)
         obj->connect(ctrls->vol_out[n], &QSlider::sliderPressed,
                      [=](){
-            ((MainWindow*)parent)->setChangeWatcherMask(n/2, true);
+            ((MainWindow*)parent)->setChangeWatcherMask(n/2 | MASK_VOL, true);
         });
         obj->connect(ctrls->vol_out[n], &QSlider::sliderReleased,
                      [=](){
-            ((MainWindow*)parent)->setChangeWatcherMask(n/2, false);
+            ((MainWindow*)parent)->setChangeWatcherMask(n/2 | MASK_VOL, false);
 
         });
         obj->connect(ctrls->vol_out_mute[n], &QCheckBox::stateChanged,
@@ -172,11 +176,9 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             bool value = checkstate ? 1 : 0;
             int which_control = n/2;
             int other_idx = (n&1) ? n-1 : n+1;
-            if(ctrls->vol_out_link[which_control]->isChecked()){
-                if(ctrls->vol_out_mute[other_idx]->isChecked() != value){
-                    ctrls->vol_out_mute[other_idx]->setChecked(value);
-                }
-            }
+#ifdef DEBUG
+            fprintf(stderr, "signal: ctl: %d idx: %d val: %d\n", which_control, n&1, value);
+#endif
             alsa_numid control_id;
             if(which_control == 0){
                 control_id = alsa_numid::OUT_SWITCH_12;
@@ -191,7 +193,21 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                 fprintf(stderr, "invalid mute set: %d\n how did this happen\n", which_control);
                 return;
             }
+            // this stops feedback here
+            ((MainWindow*)parent)->setChangeWatcherMask(n/2 | MASK_MUTE, true);
+
+            if(ctrls->vol_out_link[which_control]->isChecked()){
+                if(ctrls->vol_out_mute[other_idx]->isChecked() != value){
+                    bool old = ctrls->vol_out_mute[n]->blockSignals(true);
+                    ctrls->vol_out_mute[other_idx]->setChecked(value);
+                    ctrls->vol_out_mute[n]->blockSignals(old);
+                }
+            }
             this->set(control_id, !value, n&1);
+            // if the other idx is accepting signals, then it didn't call this idx
+            if(! ctrls->vol_out_mute[other_idx]->signalsBlocked()){
+                ((MainWindow*)parent)->setChangeWatcherMask(which_control | MASK_MUTE, false);
+            }
         });
         obj->connect(ctrls->out_src[n], static_cast< void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
                 [=](int index){
@@ -249,12 +265,14 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             }
             this->set(control_id, index);
         });
-        if(n >= 4) continue;
+    }
+    for(int n=0; n<8; n+=2){
+
         obj->connect(ctrls->in_pad[n], &QRadioButton::toggled,
                      [=](){
-            bool value = ctrls->in_pad[2*n+1]->isChecked();
+            bool value = ctrls->in_pad[n+1]->isChecked();
             alsa_numid control_id;
-            switch(n){
+            switch(n/2){
             case 0:
                 control_id = alsa_numid::IN_PAD_1;
                 break;
@@ -273,15 +291,16 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             }
             this->set(control_id, value, 0);
         });
-        if(n >= 2) continue;
+    }
+    for(int n=0; n<4; n += 2){
         obj->connect(ctrls->in_imp[n], &QRadioButton::toggled,
                      [=](){
-           bool value = ctrls->in_imp[2*n+1]->isChecked();
+           bool value = ctrls->in_imp[n+1]->isChecked();
            alsa_numid control_id;
-           if(n == 0){
+           if(n/2 == 0){
                control_id = alsa_numid::IN_IMP_1;
            }
-           else if(n == 1){
+           else if(n/2 == 1){
                control_id = alsa_numid::IN_IMP_2;
            }
            else{

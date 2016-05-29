@@ -1,6 +1,8 @@
 #ifndef MIXSISCTRL
 #define MIXSISCTRL
 
+#define DEBUG
+
 #include <QSlider>
 #include <QCheckBox>
 #include <QComboBox>

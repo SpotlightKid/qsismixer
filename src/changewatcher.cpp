@@ -4,8 +4,12 @@
 #include "mainwindow.h"
 #include "mixsis.h"
 
-ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, QObject *parent): QThread(parent), ctl(ctl){
-    isVolBlocked[0] = isVolBlocked[1] = isVolBlocked[2] = false;
+bool volHasSecondIdx(alsa_numid numid){
+    return (numid == alsa_numid::OUT_VOL_12) || (numid == alsa_numid::OUT_VOL_34) || (numid == alsa_numid::OUT_VOL_56);
+};
+
+ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, QObject *parent): QThread(parent), ctl(ctl), isVolMasked {0}, isMuteMasked {0}, isMatrixVolMasked{0} {
+
 }
 
 void ChangeWatcher::run(){
@@ -50,7 +54,7 @@ void ChangeWatcher::run(){
                 continue;
             }
             numid = snd_ctl_event_elem_get_numid(event);
-            if( (isVolBlocked[0] && (numid == alsa_numid::OUT_VOL_12)) || (isVolBlocked[1] && (numid == alsa_numid::OUT_VOL_34)) || (isVolBlocked[2] && (numid == alsa_numid::OUT_VOL_56)) ){
+            if(isNumidMasked((alsa_numid)numid)){
                 continue;
             }
             snd_ctl_event_elem_get_id(event, id);
@@ -82,7 +86,7 @@ void ChangeWatcher::run(){
                 val = MixSis::dB_from_volume(val, (alsa_numid) numid, ctl);
             }
             emit changeVal(numid, val, 0);
-            if(isVolume && (numid != (int)alsa_numid::MSTR_VOL)){
+            if(isVolume && volHasSecondIdx((alsa_numid)numid)){
                 val = snd_ctl_elem_value_get_integer(value, 1);
                 val = MixSis::dB_from_volume(val, (alsa_numid) numid, ctl);
                 emit changeVal(numid, val, 1);
@@ -95,9 +99,44 @@ void ChangeWatcher::run(){
     }
 }
 
-void ChangeWatcher::maskVol(int num, bool mask){
-    if((num < 3)&&(num >=0)){
-        isVolBlocked[num] = mask;
+void ChangeWatcher::setMask(int num, int mask){
+    fprintf(stderr, "set mask %x to %d\n", num, mask);
+    if(num & MASK_MTX_VOL){
+        num = num & ~MASK_MTX_VOL;
+        int mtx = num/18;
+        int vol = num%18;
+        if(mask){
+            // set mask bit
+            isMatrixVolMasked[mtx] |= 1 << vol;
+        }
+        else{
+            // clear mask bit
+            isMatrixVolMasked[mtx] &= ~(1 << vol);
+        }
     }
-    else fprintf(stderr, "ChangeWatcher::maskVol: invalid mask num %d\n", num);
+    else if(num & MASK_VOL){
+        num = num & ~MASK_VOL;
+        if((num < 3)&&(num >=0)){
+            isVolMasked[num] = mask;
+        }
+#ifdef DEBUG
+        else{
+            fprintf(stderr, "ChangeWatcher::maskVol: invalid mask num %d\n", num);
+        }
+#endif
+    }
+    else if(num & MASK_MUTE){
+        num = num & ~MASK_MUTE;
+        if((num < 3) && (num >= 0)){
+            isMuteMasked[num] = mask;
+        }
+#ifdef DEBUG
+        else fprintf(stderr, "ChangeWatcher::setMask: invalid mask num %d\n", num);
+#endif
+    }
+}
+
+bool ChangeWatcher::isNumidMasked(alsa_numid numid){
+    return (isVolMasked[0] && (numid == alsa_numid::OUT_VOL_12)) || (isVolMasked[1] && (numid == alsa_numid::OUT_VOL_34)) || (isVolMasked[2] && (numid == alsa_numid::OUT_VOL_56)) ||
+            (isMuteMasked[0] && (numid == alsa_numid::OUT_SWITCH_12)) || (isMuteMasked[1] && (numid == alsa_numid::OUT_SWITCH_34)) || (isMuteMasked[2] && (numid == alsa_numid::OUT_SWITCH_56));
 }

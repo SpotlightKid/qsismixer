@@ -312,7 +312,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // ChangeWatcher handles alsa callbacks from another thread in case another program changes the values
     watch = new ChangeWatcher(mixer->ctl, this);
     QObject::connect(watch, &ChangeWatcher::changeVal, this, &MainWindow::setVal);
-    QObject::connect(this, &MainWindow::maskVol, watch, &ChangeWatcher::maskVol);
+    QObject::connect(this, &MainWindow::maskVol, watch, &ChangeWatcher::setMask);
     watch->start();
 
     createMenu();
@@ -399,6 +399,6 @@ void MainWindow::setVal(int alsa_id, int value, int idx){
     mixctrl.set(alsa_id, value, idx);
 }
 
-void MainWindow::setChangeWatcherMask(int n, bool mask){
+void MainWindow::setChangeWatcherMask(int n, int mask){
     emit maskVol(n, mask);
 }

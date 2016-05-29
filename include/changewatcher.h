@@ -4,6 +4,11 @@
 #include "qthread.h"
 #include "alsa/asoundlib.h"
 #include "mixsisctrl.h"
+
+const int MASK_VOL = 0x80000;
+const int MASK_MUTE = MASK_VOL << 1;
+const int MASK_MTX_VOL = MASK_MUTE << 1;
+
 class ChangeWatcher : public QThread{
 Q_OBJECT
 public:
@@ -13,14 +18,16 @@ public:
 
     public slots:
 
-    void maskVol(int num, bool mask);
+    void setMask(int num, int mask);
 
 signals:
     void changeVal(int numid, int val, int idx);
 
 private:
-    bool isVolBlocked[3];
-
+    bool isVolMasked[3];
+    bool isMuteMasked[3];
+    uint8_t isMatrixVolMasked[18];
+    bool isNumidMasked(alsa_numid numid);
 };
 
 #endif // CHANGEWATCHER_H
