@@ -25,7 +25,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
 
     snd_ctl_elem_info_t *info;
     snd_ctl_elem_info_alloca(&info);
-    snd_ctl_elem_info_set_numid(info,3);
+    snd_ctl_elem_info_set_numid(info, USB_SYNC);
     snd_ctl_elem_info(ctl, info);
 
     // check whether this is a 6i6
