@@ -342,13 +342,11 @@ bool MainWindow::event(QEvent *ev){
 }
 
 // for flagging load/saves from the command line
-int MainWindow::loadFrom(const char* filename){
-    QString filen(filename);
+int MainWindow::loadFrom(QString filen){
     return mixctrl.load_from(filen);
 }
 
-int MainWindow::saveTo(const char* filename){
-    QString filen(filename);
+int MainWindow::saveTo(QString filen){
     return mixctrl.save_to(filen);
 }
 
@@ -401,4 +399,8 @@ void MainWindow::setVal(int alsa_id, int value, int idx){
 
 void MainWindow::setChangeWatcherMask(int n, int mask){
     emit maskVol(n, mask);
+}
+
+void MainWindow::doReset(){
+    mixctrl.reset_controls();
 }

@@ -25,7 +25,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
 
     snd_ctl_elem_info_t *info;
     snd_ctl_elem_info_alloca(&info);
-    snd_ctl_elem_info_set_numid(info, USB_SYNC);
+    snd_ctl_elem_info_set_numid(info, (int) alsa_numid::USB_SYNC);
     snd_ctl_elem_info(ctl, info);
 
     // check whether this is a 6i6
@@ -39,12 +39,14 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
     // now that we know it's a scarlett, first, get all the values and set them
     snd_ctl_elem_value_t *value;
     snd_ctl_elem_value_alloca(&value);
+
     // need hctl elem for great justice
     snd_hctl_elem_t *helem;
     bool trackingp = true;
-    // setup dB stuff from card info
+
+    // setup volume controls
     int minVol = 0, maxVol = 100;
-    // setup min/max slider values
+    // min/max slider values
     for(int k=0;k<18;++k){
         for(int l=0;l<8;++l){
             ctrls->mtx_vol[k][l]->setMinimum((int)minVol);
@@ -66,13 +68,14 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         snd_ctl_elem_id_set_numid(id, i);
         snd_ctl_elem_info_set_id(info, id);
         snd_ctl_elem_info(ctl, info);
-        snd_ctl_elem_info_get_id(info,id);
+        snd_ctl_elem_info_get_id(info, id);
 
         helem = snd_hctl_find_elem(hctl, id);
         snd_hctl_elem_info(helem, info);
         snd_ctl_elem_type_t type = snd_ctl_elem_info_get_type(info);
         snd_ctl_elem_value_set_numid(value, i);
         snd_hctl_elem_read(helem, value);
+
         int count = snd_ctl_elem_info_get_count(info);
         int val;
         bool isVolume = MixSisCtrl::numidIsVolume((alsa_numid)i);
@@ -82,23 +85,22 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                 if(isVolume){
                     val = dB_from_volume(val, (alsa_numid)i, ctl);
                 }
-                ctrls->set(i,val, idx);
             }
             else if(type == SND_CTL_ELEM_TYPE_BOOLEAN){
                 val = snd_ctl_elem_value_get_boolean(value,idx);
-                ctrls->set(i,val,idx);
             }
             else if(type == SND_CTL_ELEM_TYPE_ENUMERATED){
                 val = snd_ctl_elem_value_get_enumerated(value,idx);
-                ctrls->set(i,val,idx);
             }
             else{
-                fprintf(stderr, "Something went wrong, i=%d, idx=%d\n", i, idx);
+                fprintf(stderr, "invalid index type, i=%d, idx=%d\n", i, idx);
+                continue;
             }
+            ctrls->set(i,val,idx);
         }
 
     }
-    // set volume link controls intelligently, too
+    // set volume link controls intelligently
     for(int i=0; i<3; ++i){
         ctrls->vol_out_link[i]->setChecked(ctrls->vol_out[2*i]->value() == ctrls->vol_out[2*i+1]->value());
     }
@@ -124,8 +126,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         this->set(alsa_numid::MSTR_SWITCH, !(checkstate == Qt::Checked), 0);
     });
     int n;
-    // pass by value lambda statements let the if statements work okay inside the lambda,
-    // maybe would make more sense if they were outside though? (if it ain't broke)
+    //  pass by value lambda statements let the if statements work okay inside the lambda
     for(n=0; n<6; ++n){
         // volume out controls 1-6
         obj->connect(ctrls->vol_out[n], &QSlider::valueChanged,
@@ -151,7 +152,10 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
                 control_id = alsa_numid::OUT_VOL_56;
             }
             else{
-                fprintf(stderr, "invalid volume out set: %d\n how did this happen\n", which_control);
+                fprintf(stderr, "invalid volume out set: %d\nhow did ths happen?\ncrashing...\n", which_control);
+                QEvent quitting(QEvent::Quit);
+                ((MainWindow*)parent)->event(&quitting);
+                // crash
                 return;
             }
 #ifdef DEBUG

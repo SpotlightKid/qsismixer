@@ -1,75 +1,45 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QCommandLineParser>
 
 void help();
 void version();
 
-static const char * filename = "cfg.6i6";
+//static const char * filename = "cfg.6i6";
 const char* device = "hw:USB";
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
-    int toSave = 0;
-    int toLoad = 0;
-    for(int i=1; i<argc; ++i){
-        switch(argv[i][0]){
-        case '-':
-            if(argv[i][1] == 'v'){
-                version();
-                return 0;
-            }
-            else if(argv[i][1] == 'd' || argv[i][1] == 'l'){
-                if( i+1 < argc ){
-                    filename = argv[i+1];
-                }
-                if(argv[i++][1] == 'd'){
-                    toSave = 1;
-                    break;
-                }
-                else{
-                    toLoad = 1;
-                    break;
-                }
-            }
-            else if(argv[i][1] == 'h'){
-                help();
-                return 0;
-            }
-            else if(argv[i][1] == 'D'){
-                if(++i < argc){
-                    device = argv[i];
-                }
-                continue;
-            }
-        default:
-            help();
-            return -1;
-        }
-    }
+    QApplication::setApplicationName("Qt Sixisix Mixer");
+    QApplication::setApplicationVersion("\nversion 0.2\n17 Dec 2016");
+    QCommandLineParser parser;
+    parser.setApplicationDescription("Qt Sixisix Mixer\nMixer GUI for controlling the Focusrite Scarlett 6i6");
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addOptions({
+           // set alsa device handle
+           {{"D","device"}, QApplication::translate("main","Use alsa device handle <device> (default hw:USB)"),
+                            QApplication::translate("main","device")},
+           {{"d","dump"}, QApplication::translate("main","Dump current configuration to <filename>"),
+                            QApplication::translate("main","filename")},
+           {{"l","load"}, QApplication::translate("main","Load configuration from <filename>"),
+                            QApplication::translate("main","filename")},
+           {"no-reset", QApplication::translate("main","Don't reset mixer controls to the values reported by the alsa backend")},
+                      });
     MainWindow w;
-    if(toSave){
-        return w.saveTo(filename);
+    parser.process(a);
+    if(parser.isSet("device")){
+        device = parser.value("device").toLatin1().data();
     }
-    if(toLoad){
-        return w.loadFrom(filename);
+    if(parser.isSet("dump")){
+        w.saveTo(parser.value("dump"));
+    }
+    if(parser.isSet("load")){
+        w.loadFrom(parser.value("load"));
+    }
+    if(!parser.isSet("no-reset")){
+        w.doReset();
     }
     w.show();
     return a.exec();
-}
-
-void help(){
-    version();
-    fprintf(stdout,"%s\n\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n\t%-20s%s\n",
-            "Usage: qsismix [ options ]",
-            "-D (device)","selects alsa device handle (default hw:USB)",
-            "-d (filename)","saves (dumps) the current configuration to file given (default cfg.6i6) and then exits",
-            "-l (filename)","loads a configuration from the file given (default cfg.6i6) and then exits",
-            "-v","prints version information",
-            "-h","prints this help file");
-}
-
-void version(){
-    fprintf(stdout, "Qt Sixisix Mixer\n"
-            "version 0.191\n"
-            "Aug 19, 2016\n");
 }

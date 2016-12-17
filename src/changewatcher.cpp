@@ -37,7 +37,7 @@ void ChangeWatcher::run(){
             snd_ctl_event_alloca(&event);
             err = snd_ctl_read(ctl, event);
             if(err < 0){
-                fprintf(stderr, "error reading event: %s\n", strerror(err));
+                fprintf(stderr, "error reading event from audio backend: %s\n", strerror(err));
                 continue;
             }
             if(snd_ctl_event_get_type(event) != SND_CTL_EVENT_ELEM){
@@ -100,7 +100,9 @@ void ChangeWatcher::run(){
 }
 
 void ChangeWatcher::setMask(int num, int mask){
+#ifdef DEBUG
     fprintf(stderr, "set mask %x to %d\n", num, mask);
+#endif
     if(num & MASK_MTX_VOL){
         num = num & ~MASK_MTX_VOL;
         int mtx = num/18;

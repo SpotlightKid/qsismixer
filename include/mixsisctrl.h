@@ -10,10 +10,13 @@
 
 #include <alsa/version.h>
 
-#if SND_LIB_VERSION >= 0x010102
+int constexpr kUsbSync() {
+    return (SND_LIB_VERSION >= 0x010102) ? 5 : 3;
+}
+//#if SND_LIB_VERSION >= 0x010102
 // ALSA >= 1.1.2
 enum alsa_numid {
-        USB_SYNC = 5, MSTR_SWITCH, MSTR_VOL, OUT_SWITCH_12, OUT_VOL_12, OUT_1_SRC, OUT_2_SRC,
+        USB_SYNC = kUsbSync(), MSTR_SWITCH, MSTR_VOL, OUT_SWITCH_12, OUT_VOL_12, OUT_1_SRC, OUT_2_SRC,
         OUT_SWITCH_34, OUT_VOL_34, OUT_3_SRC, OUT_4_SRC, OUT_SWITCH_56, OUT_VOL_56,
         OUT_5_SRC, OUT_6_SRC, IN_IMP_1, IN_PAD_1, IN_IMP_2, IN_PAD_2, IN_PAD_3, IN_PAD_4,
         MATRIX_ROUTE_1, MATRIX_1_A, MATRIX_1_B, MATRIX_1_C, MATRIX_1_D, MATRIX_1_E, MATRIX_1_F, MATRIX_1_G, MATRIX_1_H,
@@ -37,7 +40,7 @@ enum alsa_numid {
         INPUT_ROUTE_1, INPUT_ROUTE_2, INPUT_ROUTE_3, INPUT_ROUTE_4, INPUT_ROUTE_5, INPUT_ROUTE_6
 
 };
-#else
+/*#else
 // ALSA 1.1.1 and earlier uses these numid's
 enum alsa_numid {
         USB_SYNC = 3, MSTR_SWITCH, MSTR_VOL, OUT_SWITCH_12, OUT_VOL_12, OUT_1_SRC, OUT_2_SRC,
@@ -64,7 +67,7 @@ enum alsa_numid {
         INPUT_ROUTE_1, INPUT_ROUTE_2, INPUT_ROUTE_3, INPUT_ROUTE_4, INPUT_ROUTE_5, INPUT_ROUTE_6
     };
 #endif
-
+*/
 struct MixSisCtrl
 {
 
@@ -89,14 +92,15 @@ struct MixSisCtrl
  //   int load_from_dialog(QWidget *context);
 
     /// gets control values from file
-    int load_from(QString &filename);
+    int load_from(const QString &filename);
 
     /// dumps control values to file
-    int save_to(QString &filename);
+    int save_to(const QString &filename);
 
     /// sets the qt control corresponding to alsa_id,idx to a certain value
     void set(int alsa_id, int value, int idx = 0);
 
+    int reset_controls();
 };
 
 #endif // MIXSISCTRL

@@ -22,10 +22,11 @@ public:
     ~MainWindow();
 
     void loop();
-    int loadFrom(const char* filename);
-    int saveTo(const char* filename);
+    int loadFrom(QString filen);
+    int saveTo(QString filen);
     bool event(QEvent *ev);
     void setChangeWatcherMask(int n, int mask);
+    void doReset();
 
 public slots:
     void setVal(int alsa_id, int value, int idx = 0);
