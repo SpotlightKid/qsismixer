@@ -549,24 +549,6 @@ void MixSisCtrl::set(int alsa_id, int value, int idx){
         mtx_vol[j][7]->setValue(value);
         break;
     default:
-        fprintf(stderr, "invalid alsa ID: %d\n", alsa_id);
-    }
-}
-
-
-// this function resets the controls of the mixer to the values reported by alsa, which corrects for a bug where the alsa driver reports values that should be right but the actual controls aren't set on the hardware
-int MixSisCtrl::reset_controls(){
-    QTemporaryFile slFile;
-    if(slFile.open()){
-        // to effect this function, just save values to and load from a temporary file
-        if( save_to(slFile.fileName()) ) return -1;
-        if( load_from(slFile.fileName()) ) return -2;
-        slFile.close();
-        fprintf(stderr,"Hardware values reset to those reported by software\n");
-        return 0;
-    }
-    else{
-        fprintf(stderr, "Could not open temporary file at %s\n", slFile.fileName().toLatin1().constData());
-        return -3;
+        fprintf(stderr, "MixSisCtrl::set: invalid alsa ID: %d\n", alsa_id);
     }
 }

@@ -26,7 +26,6 @@ public:
     int saveTo(QString filen);
     bool event(QEvent *ev);
     void setChangeWatcherMask(int n, int mask);
-    void doReset();
 
 public slots:
     void setVal(int alsa_id, int value, int idx = 0);
@@ -46,6 +45,11 @@ private:
     QAction *exitAct;
     QMenu *editMenu;
     QAction *clearMtxAct;
+    QAction *bounceMtxAct;
+    QAction *restoreMtxAct;
+
+    int mtxRAM[18][9];
+
     void createMenu();
 };
 

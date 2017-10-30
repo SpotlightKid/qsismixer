@@ -4,9 +4,9 @@
 #include "mainwindow.h"
 #include "mixsis.h"
 
-bool volHasSecondIdx(alsa_numid numid){
+constexpr bool volHasSecondIdx(alsa_numid numid){
     return (numid == alsa_numid::OUT_VOL_12) || (numid == alsa_numid::OUT_VOL_34) || (numid == alsa_numid::OUT_VOL_56);
-};
+}
 
 ChangeWatcher::ChangeWatcher(snd_ctl_t *ctl, QObject *parent): QThread(parent), ctl(ctl), isVolMasked {0}, isMuteMasked {0}, isMatrixVolMasked{0} {
 
@@ -60,15 +60,13 @@ void ChangeWatcher::run(){
             snd_ctl_event_elem_get_id(event, id);
             snd_ctl_elem_value_set_id(value, id);
             snd_ctl_elem_read(ctl, value);
-            // this actually doesn't seem to work, always returns 0 =/
-            idx = snd_ctl_event_elem_get_index(event);
-
+            idx = snd_ctl_event_elem_get_index(event); // this call always seems to return 0 but is the "right" way to implement the api
             snd_ctl_elem_info_set_numid(info, numid);
             snd_ctl_elem_info(ctl, info);
 
             switch(snd_ctl_elem_info_get_type(info)){
             case SND_CTL_ELEM_TYPE_BOOLEAN:
-                    val = snd_ctl_elem_value_get_boolean(value, idx);
+                val = snd_ctl_elem_value_get_boolean(value, idx);
                 break;
             case SND_CTL_ELEM_TYPE_ENUMERATED:
                 val = snd_ctl_elem_value_get_enumerated(value, idx);

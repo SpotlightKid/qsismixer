@@ -11,7 +11,7 @@ const char* device = "hw:USB";
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     QApplication::setApplicationName("Qt Sixisix Mixer");
-    QApplication::setApplicationVersion("\nversion 0.2\n17 Dec 2016");
+    QApplication::setApplicationVersion("\nversion 0.2.1\n29 Oct 2017");
     QCommandLineParser parser;
     parser.setApplicationDescription("Qt Sixisix Mixer\nMixer GUI for controlling the Focusrite Scarlett 6i6");
     parser.addHelpOption();
@@ -24,7 +24,6 @@ int main(int argc, char *argv[]){
                             QApplication::translate("main","filename")},
            {{"l","load"}, QApplication::translate("main","Load configuration from <filename>"),
                             QApplication::translate("main","filename")},
-           {"no-reset", QApplication::translate("main","Don't reset mixer controls to the values reported by the alsa backend")},
                       });
     MainWindow w;
     parser.process(a);
@@ -36,9 +35,6 @@ int main(int argc, char *argv[]){
     }
     if(parser.isSet("load")){
         w.loadFrom(parser.value("load"));
-    }
-    if(!parser.isSet("no-reset")){
-        w.doReset();
     }
     w.show();
     return a.exec();

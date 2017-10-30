@@ -21,14 +21,17 @@ class MixSis
 
     void set_vol_mute(int which, bool);
 public:
-    snd_ctl_t *ctl;
-    void set(alsa_numid, int, int = 0);
+
     MixSis(MixSisCtrl* ctrls, const char *device, QObject *obj);
     ~MixSis();
+
+    snd_ctl_t *ctl;
+    void set(alsa_numid, int, int = 0);
 
     static int dB_from_volume(int value, alsa_numid controlID, snd_ctl_t *control);
     static int volume_from_dB(int value, alsa_numid controlID, snd_ctl_t *control);
     static void get_alsa_id(snd_ctl_t *ctl, snd_ctl_elem_id_t*& id, alsa_numid numid);
+
 };
 
 #endif // MIX6I6_H

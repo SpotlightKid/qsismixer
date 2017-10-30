@@ -20,7 +20,8 @@ The card has a powerful hardware mixer. I find this program easier to use than a
 Now including static configurations: qsismix can save and load arbitrary configurations from the command line
 
 TODO:
-an options menu would be cool, if qsismix had options
+an options menu would be cool
+write code to dynamically generate the visual forms
 
 
 PLEASE NOTE: ALSA version 1.1.1 and 1.1.2 use different identifying control numbers internally to refer to the 6i6's controls. These control codes are compiled into Qsismixer at build time. Therefore, you must build Qsismixer against the ALSA headers for the same version as the ALSA libraries that are installed on your system. Eg, if you built Qsismixer against ALSA < 1.1.2, and then update your system to ALSA >= 1.1.2, you will have to rebuild Qsismixer against the new ALSA library in order for the program to function properly.

@@ -1,4 +1,6 @@
 #include <cstring>
+#include <memory>
+#include <cstdio>
 #include <QtCore>
 #include <poll.h>
 #include "mixsis.h"
@@ -31,8 +33,24 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
     // check whether this is a 6i6
     const char* name = snd_ctl_elem_info_get_name(info);
     if(strcmp("Scarlett 6i6 USB-Sync", name)){
-        printf("your card at %s does not appear to be a Scarlett 6i6.\n"
+        printf("your card at %s (or its driver) is not configured in the expected manner:\n"
                "looking for string 'Scarlett 6i6 USB-Sync'', got string '%s'\n", device, name);
+        printf("kUsbSync = %d\n", kUsbSync());
+        do {
+            // experimental grab of current aplay version to compare for user
+            char buffer[128] = {0};
+            std::shared_ptr<FILE> grabber(popen("aplay --version","r"), pclose);
+            if(!grabber) {
+                printf("unable to run \"aplay --version\" for user review\n");
+                break;
+            }
+            // example: "aplay: version 1.1.4 by Jaroslav Kysela <perex@perex.cz>"
+            fread(buffer,1,15,grabber.get()); // discard 15 bytes
+            fscanf(grabber.get(), "%s", buffer);
+            printf("compiled against alsa version : %s\n"
+                   "running with alsa version     : %s\n"
+                   "If these versions do not match, try recompiling qsismix against the libasound2-dev headers matching the alsa version currently running on your system\n", SND_LIB_VERSION_STR, buffer);
+        } while(0);
         exit(1);
     }
 
@@ -77,26 +95,29 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         snd_hctl_elem_read(helem, value);
 
         int count = snd_ctl_elem_info_get_count(info);
-        int val;
+        int val, raw;
         bool isVolume = MixSisCtrl::numidIsVolume((alsa_numid)i);
         for(int idx = 0; idx < count; ++idx){
             if(type == SND_CTL_ELEM_TYPE_INTEGER){
-                val = snd_ctl_elem_value_get_integer(value,idx);
+                raw = val = snd_ctl_elem_value_get_integer(value,idx);
                 if(isVolume){
                     val = dB_from_volume(val, (alsa_numid)i, ctl);
                 }
             }
             else if(type == SND_CTL_ELEM_TYPE_BOOLEAN){
-                val = snd_ctl_elem_value_get_boolean(value,idx);
+                raw = val = snd_ctl_elem_value_get_boolean(value,idx);
             }
             else if(type == SND_CTL_ELEM_TYPE_ENUMERATED){
-                val = snd_ctl_elem_value_get_enumerated(value,idx);
+                raw = val = snd_ctl_elem_value_get_enumerated(value,idx);
             }
             else{
                 fprintf(stderr, "invalid index type, i=%d, idx=%d\n", i, idx);
                 continue;
             }
             ctrls->set(i,val,idx);
+            // to thwart a bug where faithfully reported values aren't actually reflected in hardware, turn the control off and on like a light switch
+            this->set((alsa_numid)i, raw ? 0 : 1, idx);
+            this->set((alsa_numid)i, raw, idx);
         }
 
     }
@@ -126,7 +147,8 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         this->set(alsa_numid::MSTR_SWITCH, !(checkstate == Qt::Checked), 0);
     });
     int n;
-    //  pass by value lambda statements let the if statements work okay inside the lambda
+    // sanity: pass by value lambda statements let the if statements work okay inside the lambda
+    // open question, does the preprocessor simply evaluate them when dynamically generating code for execution or what?
     for(n=0; n<6; ++n){
         // volume out controls 1-6
         obj->connect(ctrls->vol_out[n], &QSlider::valueChanged,
@@ -136,6 +158,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             int other_idx = (n&1) ? n-1 : n+1; // if idx = 1, other = 0,etc
             if(ctrls->vol_out_link[which_control]->isChecked()){
                 if(ctrls->vol_out[other_idx]->value() != volume){
+                    // this primitive mutex stops linked stereo volumes from setting each other back and forth simultaneously on mouse drags
                     bool old = ctrls->vol_out[n]->blockSignals(true);
                     ctrls->vol_out[other_idx]->setValue(volume);
                     ctrls->vol_out[n]->blockSignals(old);
