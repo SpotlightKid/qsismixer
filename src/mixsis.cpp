@@ -36,21 +36,22 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         printf("your card at %s (or its driver) is not configured in the expected manner:\n"
                "looking for string 'Scarlett 6i6 USB-Sync'', got string '%s'\n", device, name);
         printf("kUsbSync = %d\n", kUsbSync());
-        do {
+        {
             // experimental grab of current aplay version to compare for user
             char buffer[128] = {0};
             std::shared_ptr<FILE> grabber(popen("aplay --version","r"), pclose);
             if(!grabber) {
                 printf("unable to run \"aplay --version\" for user review\n");
-                break;
+                exit(1);
             }
             // example: "aplay: version 1.1.4 by Jaroslav Kysela <perex@perex.cz>"
             fread(buffer,1,15,grabber.get()); // discard 15 bytes
             fscanf(grabber.get(), "%s", buffer);
-            printf("compiled against alsa version : %s\n"
+            printf("compiled against alsa version : %.5s\n"
                    "running with alsa version     : %s\n"
-                   "If these versions do not match, try recompiling qsismix against the libasound2-dev headers matching the alsa version currently running on your system\n", SND_LIB_VERSION_STR, buffer);
-        } while(0);
+                   "If these versions do not match, try recompiling qsismix against the libasound2-dev headers matching the alsa version currently running on your system\n",
+                   SND_LIB_VERSION_STR, buffer);
+        }
         exit(1);
     }
 
@@ -116,7 +117,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
             }
             ctrls->set(i,val,idx);
             // to thwart a bug where faithfully reported values aren't actually reflected in hardware, turn the control off and on like a light switch
-            this->set((alsa_numid)i, raw ? 0 : 1, idx);
+            this->set((alsa_numid)i, !raw, idx);
             this->set((alsa_numid)i, raw, idx);
         }
 
@@ -132,7 +133,7 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
         this->set(alsa_numid::MSTR_VOL, sixiVol);
         bool blocked = ctrls->vol_master[0]->blockSignals(true);
         ctrls->vol_master[1]->setValue(ctrls->vol_master[0]->value());
-        ctrls->vol_master[1]->blockSignals(blocked);
+        ctrls->vol_master[0]->blockSignals(blocked);
     });
     obj->connect(ctrls->vol_master[1], &QSlider::valueChanged,
             [=](){

@@ -11,7 +11,7 @@ const char* device = "hw:USB";
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     QApplication::setApplicationName("Qt Sixisix Mixer");
-    QApplication::setApplicationVersion("\nversion 0.2.1\n29 Oct 2017");
+    QApplication::setApplicationVersion("\nversion 0.2.2\n07 Dec 2017");
     QCommandLineParser parser;
     parser.setApplicationDescription("Qt Sixisix Mixer\nMixer GUI for controlling the Focusrite Scarlett 6i6");
     parser.addHelpOption();
@@ -25,11 +25,16 @@ int main(int argc, char *argv[]){
            {{"l","load"}, QApplication::translate("main","Load configuration from <filename>"),
                             QApplication::translate("main","filename")},
                       });
-    MainWindow w;
     parser.process(a);
+    char * tmp_device = NULL;
     if(parser.isSet("device")){
-        device = parser.value("device").toLatin1().data();
+        QByteArray userDevice = parser.value("device").toLocal8Bit();
+
+        tmp_device = new char[userDevice.size() + 1];
+        strcpy(tmp_device, userDevice.data());
+        device = tmp_device;
     }
+    MainWindow w;
     if(parser.isSet("dump")){
         w.saveTo(parser.value("dump"));
     }
