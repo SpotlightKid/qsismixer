@@ -32,9 +32,9 @@ MixSis::MixSis(MixSisCtrl *ctrls, const char* device, QObject *obj) : controls(c
 
     // check whether this is a 6i6
     const char* name = snd_ctl_elem_info_get_name(info);
-    if(strcmp("Scarlett 6i6 USB-Sync", name)){
+    if(strcmp("Scarlett 6i6 USB-Sync Clock Source", name)){
         printf("your card at %s (or its driver) is not configured in the expected manner:\n"
-               "looking for string 'Scarlett 6i6 USB-Sync'', got string '%s'\n", device, name);
+               "looking for string 'Scarlett 6i6 USB-Sync Clock Source'', got string '%s'\n", device, name);
         printf("kUsbSync = %d\n", kUsbSync());
         {
             // experimental grab of current aplay version to compare for user
